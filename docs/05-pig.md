@@ -93,7 +93,7 @@ Pig 0.18 failed with `ClassNotFoundException: org.apache.commons.collections.buf
 
 ## Results
 
-Full data, 1,480,915 rows, 304 seconds, 13 MapReduce jobs.
+Full data, 1,480,855 rows, 329 seconds, 13 MapReduce jobs.
 
 Single highest-load hour per country (`peak_hour.csv`, times in UTC):
 
@@ -130,7 +130,7 @@ Hour of the day with the highest average load (`peak_hour_of_day.csv`, UTC):
 
 The 10 windiest days (`top_wind_days.csv`) are all in Germany, the biggest wind fleet. The top one is 2020-02-11 with 1,034,085 MWh of wind in one day, right after storm Sabine (also called Ciara) crossed Germany on 9 and 10 February. On 2020-02-22 wind and solar covered 83% of German load.
 
-From `daily.csv` (20,629 country-days): Denmark's average daily share is 46%, and on 2020-05-16 Danish wind and solar produced 131% of Danish load. A share above 100% means the country made more than it used and exported the rest.
+From `daily.csv` (20,627 country-days): Denmark's average daily share is 46%, and on 2020-05-16 Danish wind and solar produced 131% of Danish load. A share above 100% means the country made more than it used and exported the rest.
 
 Note: the daily share here divides plain totals (solar MWh + wind MWh) / load MWh. For a day with missing wind hours (Belgium) this is a little too low. MapReduce Job B and Hive use per-metric averages to avoid that; for the chart of daily shares in Pig we show Denmark, Germany and France, which have almost no gaps.
 
