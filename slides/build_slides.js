@@ -22,13 +22,13 @@ const OUT = path.join(__dirname, "P11_Energy_Presentation.pptx");
 // ---------------------------------------------------------------- theme
 const THEME = {
   name: "P11 Energy",
-  headFontFace: "Cambria",
-  bodyFontFace: "Calibri",
+  headFontFace: "Montserrat",
+  bodyFontFace: "Montserrat",
   colors: {
-    dk1: "1F2A36",     // slate: dark slides, main text
-    lt1: "FFFFFF",
-    dk2: "3C4A58",     // softer text
-    lt2: "EEF2F3",     // card fill
+    dk1: "14213D",     // navy: dark slides, main text
+    lt1: "FCFCFB",     // slide background, same as the chart images
+    dk2: "45506A",     // softer text
+    lt2: "E7EBEF",     // hairlines, light fills
     accent1: "17807F", // wind teal
     accent2: "D98A1C", // solar amber
     accent3: "6B7785", // muted grey
@@ -54,11 +54,24 @@ const W = 13.333, H = 7.5, MX = 0.6;
 // ---------------------------------------------------------------- layouts
 pres.defineSlideMaster({
   title: "TITLE",
-  background: { color: C.background1 },
+  background: { color: C.text1 },
   objects: [
-    { placeholder: { options: { name: "title", type: "title", x: MX, y: 2.2, w: 8.6, h: 1.9,
-        fontFace: THEME.headFontFace, fontSize: 38, bold: true, color: C.text1, valign: "top", align: "left", margin: 0 },
+    { placeholder: { options: { name: "title", type: "title", x: MX, y: 2.35, w: 8.2, h: 1.9,
+        fontFace: THEME.headFontFace, fontSize: 36, bold: true, color: C.background1, valign: "top", align: "left", margin: 0 },
       text: "Title" } },
+  ],
+});
+
+pres.defineSlideMaster({
+  title: "DIVIDER",
+  background: { color: C.text1 },
+  objects: [
+    { placeholder: { options: { name: "title", type: "title", x: MX, y: 3.55, w: 11, h: 1.0,
+        fontFace: THEME.headFontFace, fontSize: 36, bold: true, color: C.background1, valign: "top", align: "left", margin: 0 },
+      text: "Title" } },
+    { placeholder: { options: { name: "body", type: "body", x: MX, y: 4.6, w: 10, h: 0.9,
+        fontFace: THEME.bodyFontFace, fontSize: 16, color: C.accent5, valign: "top", align: "left", margin: 0 },
+      text: "Subtitle" } },
   ],
 });
 
@@ -67,13 +80,14 @@ pres.defineSlideMaster({
   background: { color: C.background1 },
   margin: [0.5, 0.6, 0.6, 0.6],
   objects: [
-    { placeholder: { options: { name: "title", type: "title", x: MX, y: 0.35, w: W - 2 * MX, h: 0.8,
-        fontFace: THEME.headFontFace, fontSize: 30, bold: true, color: C.text1, valign: "middle", align: "left", margin: 0 },
+    { placeholder: { options: { name: "title", type: "title", x: MX, y: 0.62, w: W - 2 * MX, h: 0.7,
+        fontFace: THEME.headFontFace, fontSize: 26, bold: true, color: C.text1, valign: "top", align: "left", margin: 0 },
       text: "Title" } },
     { text: { text: "P11 · Electricity load and renewable energy in Europe",
-        options: { x: MX, y: H - 0.45, w: 8, h: 0.3, fontSize: 10, color: C.accent3, margin: 0 } } },
+        options: { x: MX, y: H - 0.45, w: 8, h: 0.3, fontSize: 9, color: C.accent3, margin: 0 } } },
   ],
-  slideNumber: { x: W - MX - 0.6, y: H - 0.45, w: 0.6, h: 0.3, fontSize: 10, color: C.accent3, align: "right" },
+  slideNumber: { x: W - MX - 0.6, y: H - 0.45, w: 0.6, h: 0.3, fontSize: 9, color: C.accent3, align: "right",
+    fontFace: THEME.bodyFontFace },
 });
 
 pres.defineSlideMaster({
@@ -90,16 +104,36 @@ pres.defineSlideMaster({
 let objN = 0;
 const nm = (s) => `${s}-${++objN}`;
 
-function card(slide, x, y, w, h, fill = C.background2) {
-  slide.addShape(pres.shapes.ROUNDED_RECTANGLE, { x, y, w, h, rectRadius: 0.08,
-    fill: { color: fill }, line: { color: fill, width: 0 }, objectName: nm("card") });
+function card(slide, x, y, w, h, fill) {
+  // white card with a soft shadow; pass a fill for a coloured card
+  const opts = { x, y, w, h, rectRadius: 0.1, objectName: nm("card"),
+    fill: { color: fill || "FFFFFF" }, line: { color: fill || "E3E7EC", width: fill ? 0 : 0.75 } };
+  if (!fill) opts.shadow = { type: "outer", color: "14213D", opacity: 0.08, blur: 8, offset: 2, angle: 90 };
+  slide.addShape(pres.shapes.ROUNDED_RECTANGLE, opts);
+}
+let currentEyebrow = "";
+function eyebrow(slide) {
+  slide.addText(currentEyebrow.toUpperCase(), { x: MX, y: 0.33, w: 8, h: 0.28, isTextBox: true, margin: 0,
+    fontSize: 11, bold: true, color: C.accent1, charSpacing: 3, objectName: nm("eyebrow") });
+}
+let lastSection = "";
+function divider(section, num, title, sub) {
+  if (section !== lastSection) pres.addSection({ title: section });
+  lastSection = section;
+  currentEyebrow = section;
+  const s = pres.addSlide({ masterName: "DIVIDER", sectionTitle: section });
+  s.addText(num, { x: MX, y: 1.6, w: 4, h: 1.8, isTextBox: true, margin: 0, fontSize: 110, bold: true,
+    color: C.accent1, objectName: nm("divnum") });
+  s.addText(title, { placeholder: "title" });
+  s.addText(sub, { placeholder: "body" });
+  return s;
 }
 function text(slide, t, o) {
   slide.addText(t, Object.assign({ isTextBox: true, margin: 0, fontSize: 15, color: C.text2,
     valign: "top", objectName: nm("text") }, o));
 }
 function stat(slide, x, y, w, num, label, color = C.accent1, numSize = 40) {
-  text(slide, num, { x, y, w, h: 0.75, fontFace: THEME.headFontFace, fontSize: numSize, bold: true, color });
+  text(slide, num, { x, y, w, h: 0.75, fontFace: THEME.headFontFace, fontSize: numSize - 4, bold: true, color });
   text(slide, label, { x, y: y + 0.8, w, h: 0.7, fontSize: 13, color: C.text2 });
 }
 function numberedCircle(slide, x, y, n, fill = C.accent1) {
@@ -117,43 +151,48 @@ function image(slide, file, pw, ph, x, y, maxW, maxH, alt) {
 }
 function takeaway(slide, x, y, w, h, title, body) {
   card(slide, x, y, w, h);
-  text(slide, title, { x: x + 0.3, y: y + 0.25, w: w - 0.6, h: 0.45, fontSize: 16, bold: true, color: C.text1 });
-  text(slide, body, { x: x + 0.3, y: y + 0.75, w: w - 0.6, h: h - 0.95, fontSize: 14 });
+  text(slide, title, { x: x + 0.3, y: y + 0.22, w: w - 0.6, h: 0.4, fontSize: 15, bold: true, color: C.text1 });
+  text(slide, body, { x: x + 0.3, y: y + 0.68, w: w - 0.6, h: h - 0.85, fontSize: 13 });
 }
-const content = (section) => pres.addSlide({ masterName: "CONTENT", sectionTitle: section });
+const content = (section) => {
+  const s = pres.addSlide({ masterName: "CONTENT", sectionTitle: section });
+  eyebrow(s);
+  return s;
+};
 
 // ================================================================= 1. Title
 pres.addSection({ title: "Introduction" });
+currentEyebrow = "Introduction";
+lastSection = "Introduction";
 {
   const s = pres.addSlide({ masterName: "TITLE", sectionTitle: "Introduction" });
-  s.addImage({ path: LOGO, x: MX, y: 0.55, w: 3.4, h: 3.4 * 110 / 450, altText: "MIT Academy of Engineering logo",
-    objectName: nm("logo") });
-  text(s, "BIG DATA ANALYTICS · PROJECT P11", { x: MX, y: 1.7, w: 8, h: 0.35, fontSize: 13, bold: true,
-    color: C.accent1, charSpacing: 2 });
+  s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: MX, y: 0.55, w: 3.6, h: 1.15, rectRadius: 0.1,
+    fill: { color: "FFFFFF" }, line: { color: "FFFFFF", width: 0 }, objectName: nm("logobadge") });
+  s.addImage({ path: LOGO, x: MX + 0.2, y: 0.55 + (1.15 - 3.2 * 110 / 450) / 2, w: 3.2, h: 3.2 * 110 / 450,
+    altText: "MIT Academy of Engineering logo", objectName: nm("logo") });
+  text(s, "BIG DATA ANALYTICS  ·  PROJECT P11", { x: MX, y: 1.95, w: 8, h: 0.3, fontSize: 12, bold: true,
+    color: C.accent5, charSpacing: 3 });
   s.addText("Electricity Load and Renewable Energy in Europe", { placeholder: "title" });
-  text(s, "Six years of hourly data for 10 countries, analysed with HDFS, Java MapReduce, Pig and Hive",
-    { x: MX, y: 4.15, w: 8.4, h: 0.7, fontSize: 18, color: C.text2 });
-  // team card on the right
-  card(s, 9.6, 1.7, 3.13, 4.5);
-  text(s, "Team", { x: 9.9, y: 1.95, w: 2.6, h: 0.4, fontSize: 15, bold: true, color: C.text1 });
-  text(s, [
-    { text: "Sakshi Deshmukh", options: { bold: true, breakLine: true } },
-    { text: "202301040191", options: { color: C.accent3, breakLine: true } },
-    { text: "Vaishnavi Bhosale", options: { bold: true, breakLine: true } },
-    { text: "202301040118", options: { color: C.accent3, breakLine: true } },
-    { text: "Snehal Mane", options: { bold: true, breakLine: true } },
-    { text: "202301040076", options: { color: C.accent3, breakLine: true } },
-    { text: "Krishna Mungase", options: { bold: true, breakLine: true } },
-    { text: "202301040029", options: { color: C.accent3 } },
-  ], { x: 9.9, y: 2.45, w: 2.6, h: 2.6, fontSize: 13, paraSpaceAfter: 2 });
-  text(s, [{ text: "Guide", options: { bold: true, breakLine: true } }, { text: "Prof. Suvidha Shaha" }],
-    { x: 9.9, y: 5.2, w: 2.6, h: 0.8, fontSize: 13 });
-  text(s, "Final Year B.Tech Computer Engineering · 2026–27", { x: MX, y: 6.6, w: 8, h: 0.35, fontSize: 12,
-    color: C.accent3 });
+  text(s, "Six years of hourly data for ten countries, analysed with HDFS, Java MapReduce, Pig and Hive",
+    { x: MX, y: 4.35, w: 7.8, h: 0.8, fontSize: 16, color: C.accent5 });
+  text(s, "Guided by Prof. Suvidha Shaha  ·  Final Year B.Tech Computer Engineering  ·  2026–27",
+    { x: MX, y: 6.55, w: 9, h: 0.35, fontSize: 11, color: C.accent3 });
+  const team = [["Sakshi Deshmukh", "202301040191"], ["Vaishnavi Bhosale", "202301040118"],
+    ["Snehal Mane", "202301040076"], ["Krishna Mungase", "202301040029"]];
+  text(s, "TEAM", { x: 9.55, y: 1.95, w: 3, h: 0.3, fontSize: 12, bold: true, color: C.accent5, charSpacing: 3 });
+  team.forEach(([n, id], i) => {
+    const y = 2.4 + i * 0.85;
+    text(s, n, { x: 9.55, y, w: 3.2, h: 0.35, fontSize: 15, bold: true, color: C.background1 });
+    text(s, id, { x: 9.55, y: y + 0.36, w: 3.2, h: 0.3, fontSize: 11, color: C.accent3 });
+  });
   s.addNotes("Presenter: Krishna. Introduce the team and the topic in one line: we took real hourly electricity data for ten European countries and answered five questions a grid operator would ask, using only Hadoop tools.");
 }
 
 // ================================================================= 2. Problem
+{
+  const d = divider("Introduction", "01", "The problem and the data", "Five questions about European electricity, 1.48 million hourly readings");
+  d.addNotes("Presenter: Krishna.");
+}
 {
   const s = content("Introduction");
   s.addText("Five questions a grid operator would ask", { placeholder: "title" });
@@ -216,7 +255,7 @@ pres.addSection({ title: "Introduction" });
 }
 
 // ================================================================= 4. Pipeline
-pres.addSection({ title: "Implementation" });
+divider("Implementation", "02", "How we built it", "HDFS, two Java MapReduce jobs, a Pig script and Hive tables on one pseudo-distributed cluster");
 {
   const s = content("Implementation");
   s.addText("One pseudo-distributed Hadoop cluster on a laptop", { placeholder: "title" });
@@ -291,11 +330,11 @@ pres.addSection({ title: "Implementation" });
 {
   const s = content("Implementation");
   s.addText("MapReduce in Java: two jobs, combiner, partitioner, counters", { placeholder: "title" });
-  takeaway(s, MX, 1.45, 4.0, 2.2, "Job A: average load per country-year",
+  takeaway(s, MX, 1.45, 4.0, 2.2, "Job A: average load",
     "Mapper emits (country,year) → (sum, count). Combiner adds sums and counts but never divides; the reducer divides once.");
-  takeaway(s, MX, 3.85, 4.0, 2.2, "Job B: renewable share per month",
+  takeaway(s, MX, 3.85, 4.0, 2.2, "Job B: renewable share",
     "Sums and hour counts per metric. Share = (avg solar + avg wind) / avg load, so missing Belgian wind hours do not count as zero.");
-  text(s, "What the combiner did (Job A, full data)", { x: 5.0, y: 1.45, w: 4.2, h: 0.4, fontSize: 16, bold: true,
+  text(s, "Combiner effect, Job A", { x: 5.0, y: 1.45, w: 4.2, h: 0.4, fontSize: 16, bold: true,
     color: C.text1 });
   stat(s, 5.0, 2.0, 2.0, "494,920", "records into the reducers without a combiner", C.accent3, 30);
   stat(s, 7.2, 2.0, 2.0, "59", "with the combiner", C.accent1, 30);
@@ -310,7 +349,7 @@ pres.addSection({ title: "Implementation" });
   s.addTable([
     [{ text: "Reducer", options: { bold: true } }, { text: "Countries", options: { bold: true } }],
     ["0", "BE, GR"], ["1", "CZ, IT"], ["2", "AT, DE, DK, ES, FR, PT"],
-  ], { x: 9.8, y: 3.0, w: 2.75, colW: [0.85, 1.9], fontSize: 12, color: C.text1, border: { type: "solid",
+  ], { x: 9.8, y: 3.0, w: 2.75, colW: [1.1, 1.65], fontSize: 11, color: C.text1, border: { type: "solid",
     color: HEX.accent5, pt: 0.75 }, objectName: nm("table") });
   text(s, "Counters: BAD_LINES, LOAD/SOLAR/WIND_RECORDS, SKIPPED_OTHER_METRIC", { x: 9.8, y: 4.75, w: 2.75,
     h: 0.9, fontSize: 11, color: C.accent3 });
@@ -382,14 +421,14 @@ pres.addSection({ title: "Implementation" });
 }
 
 // ================================================================= 9. Q1
-pres.addSection({ title: "Results" });
+divider("Results", "03", "Answers to the five questions", "Every chart is drawn from Hive or Pig output");
 {
   const s = content("Results");
   s.addText("Q1. Denmark leads; Germany grew fastest", { placeholder: "title" });
   image(s, CH("1_share_by_year.png"), 1059, 696, MX, 1.35, 7.4, 5.4, "Renewable share heatmap by country and year");
   stat(s, 8.5, 1.5, 4.2, "43% → 50%", "Denmark, 2015 to 2019; almost all wind", C.accent1, 30);
   stat(s, 8.5, 3.0, 4.2, "23% → 34%", "Germany: wind rose from 8.8 to 14.1 GW", C.accent2, 30);
-  takeaway(s, 8.5, 4.6, 4.23, 1.6, "Every country rose except Czechia",
+  takeaway(s, 8.5, 4.45, 4.23, 1.75, "All rose except Czechia",
     "France is 9th: most of its power is nuclear, which this share does not count.");
   s.addNotes("Presenter: Snehal. Read the heatmap top to bottom: ranking is stable, everything gets darker to the right. 2020 is January to September only and includes lockdowns, so load was lower. On 16 May 2020 Danish wind and solar made 131% of Danish load; the rest was exported.");
 }
@@ -434,7 +473,7 @@ pres.addSection({ title: "Results" });
   image(s, CH("4b_top_load_changes_by_hour.png"), 1637, 526, MX, 5.1, 7.6, 1.85, "Hours of the 20 largest rises and drops");
   stat(s, 8.6, 1.5, 4.0, "+13.9%", "average rise into 07:00 in Italy; every country peaks 06:00–08:00", C.accent4, 36);
   stat(s, 8.6, 3.1, 4.0, "16 of 20", "largest rises are German Monday mornings (+10,957 MW max)", C.accent2, 36);
-  takeaway(s, 8.6, 4.75, 4.13, 1.45, "Computed with LAG()",
+  takeaway(s, 8.6, 4.5, 4.13, 1.9, "Computed with LAG()",
     "LAG(load) OVER (PARTITION BY country ORDER BY ts), kept only when the rows are exactly 1 hour apart.");
   s.addNotes("Presenter: Snehal. Red = rising, blue = falling. Drops are gentler and come late in the evening. The first version of this chart was all Spanish one-hour dips: errors in the source data, which we then removed.");
 }
@@ -456,13 +495,13 @@ pres.addSection({ title: "Results" });
     valAxisMaxVal: 0.5, valGridLine: { color: "E3E7EA", size: 0.5 }, catGridLine: { style: "none" },
     objectName: nm("chart") });
   image(s, CH("5a_scatter_solar_load_DE_2019.png"), 851, 650, 7.5, 1.35, 5.2, 3.3, "Germany 2019 solar vs load scatter");
-  takeaway(s, 7.5, 4.85, 5.23, 1.5, "In summer: 0.43 to 0.64",
+  takeaway(s, 7.5, 4.7, 5.23, 1.75, "In summer: 0.43 to 0.64",
     "Solar is zero at night and low in winter, when load is high. In summer load peaks at midday with the sun.");
   s.addNotes("Presenter: Snehal. France is slightly negative because its highest loads are dark winter evenings. In the German scatter the column at zero is night; the two daylight clouds are weekdays (64.7 GW average) and weekends (50.3 GW).");
 }
 
 // ================================================================= 14. Scale test
-pres.addSection({ title: "Wrap-up" });
+divider("Wrap-up", "04", "Scale, problems and conclusion", "What changed with more data, what broke, and what we learned");
 {
   const s = content("Wrap-up");
   s.addText("Scale test: time barely moves, counters scale exactly", { placeholder: "title" });
@@ -485,7 +524,7 @@ pres.addSection({ title: "Wrap-up" });
     { x: MX, y: 4.2, w: 7.4, h: 0.6, fontSize: 13, color: C.accent3 });
   stat(s, 8.5, 1.45, 4.2, "28× data, +27% time", "YARN start-up (~20 s per job) outweighs reading tens of MB", C.accent1, 28);
   stat(s, 8.5, 3.15, 4.2, "Exactly 5×", "records on the ×5 file, and identical averages: a free correctness check", C.accent2, 28);
-  takeaway(s, MX, 5.0, 12.13, 1.2, "More map tasks were slower here",
+  takeaway(s, MX, 4.95, 12.13, 1.45, "More map tasks were slower here",
     "Two tasks share one laptop's CPU and disk and pay for an extra container. On a real cluster they would run on two machines.");
   s.addNotes("Presenter: Krishna. Viva: why is the full run not 5.7 times slower? Fixed start-up cost. Why did x5 get 2 map tasks and not 3? 264,477,150 bytes is 252 MiB, which fits in two 128 MiB blocks. On the x5 run the combiner ran again while merging spill files: combine input was larger than map output.");
 }
