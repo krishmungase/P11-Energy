@@ -1,0 +1,6 @@
+drwxr-xr-x   - krishna supergroup          0 2026-11-23 10:55 /energy/warehouse/energy.db/energy_by_year/year=2015
+drwxr-xr-x   - krishna supergroup          0 2026-11-23 10:55 /energy/warehouse/energy.db/energy_by_year/year=2016
+drwxr-xr-x   - krishna supergroup          0 2026-11-23 10:55 /energy/warehouse/energy.db/energy_by_year/year=2017
+drwxr-xr-x   - krishna supergroup          0 2026-11-23 10:55 /energy/warehouse/energy.db/energy_by_year/year=2018
+drwxr-xr-x   - krishna supergroup          0 2026-11-23 10:55 /energy/warehouse/energy.db/energy_by_year/year=2019
+drwxr-xr-x   - krishna supergroup          0 2026-11-23 10:55 /energy/warehouse/energy.db/energy_by_year/year=2020

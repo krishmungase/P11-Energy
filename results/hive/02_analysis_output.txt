@@ -1,0 +1,847 @@
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/Users/krishna/Desktop/BDA/tools/apache-hive-4.2.1-bin/lib/log4j-slf4j-impl-2.24.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/Users/krishna/Desktop/BDA/tools/apache-hive-4.2.1-bin/lib/log4j-slf4j-impl-2.24.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+26/11/23 10:56:44 [main]: WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Hive Session ID = eefb8151-86cb-4a65-aada-840d7af9e539
+26/11/23 10:56:46 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:56:46 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:56:46 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:56:46 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:56:46 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:56:46 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:56:46 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:56:46 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:56:46 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:56:46 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:56:46 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:56:46 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:56:47 [main]: WARN exec.FunctionRegistry: UDF Class org.apache.hadoop.hive.ql.udf.generic.GenericUDFToJson does not have description. Please annotate the class with the org.apache.hadoop.hive.ql.exec.Description annotation and provide the description of the function.
+26/11/23 10:56:47 [main]: WARN session.SessionState: Configuration hive.reloadable.aux.jars.path not specified
+-- Runs at the start of every Hive session (hive/run_hive.sh passes it with -i).
+-- Hive's map tasks need commons-collections 3 inside the YARN containers, and Hadoop 3.4
+-- does not ship it. ADD JAR sends the jar along with every job in this session.
+-- (HIVE_AUX_JARS_PATH and hive.aux.jars.path did not work in embedded beeline; we tried.)
+ADD JAR ${env:HIV
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Step 6 (part 2): Hive queries that answer the five project questions.
+-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+26/11/23 10:56:51 [e92c47cb-6ef0-41b3-a2db-ac1339ba8545 main]: WARN calcite.RelOptHiveTable: No Stats for energy@energy_by_year, Columns: country, metric, value
+No Stats for energy@energy_by_year, Columns: country, metric, value
+26/11/23 10:56:51 [HiveServer2-Background-Pool: Thread-85]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez) or using Hive 1.X releases.
+Query ID = krishna_20261123105649_ec25ab09-506b-490b-a6ee-eaa0ae1a1e74
+Total jobs = 5
+Launching Job 1 out of 5
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 10:56:52 [HiveServer2-Background-Pool: Thread-85]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0145, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0145/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0145
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+26/11/23 10:57:01 [HiveServer2-Background-Pool: Thread-85]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 10:57:01,665 Stage-1 map = 0%,  reduce = 0%
+2026-11-23 10:57:11,031 Stage-1 map = 100%,  reduce = 0%
+2026-11-23 10:57:17,254 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0145
+Launching Job 2 out of 5
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 10:57:19 [HiveServer2-Background-Pool: Thread-85]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0146, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0146/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0146
+Hadoop job information for Stage-5: number of mappers: 1; number of reducers: 1
+26/11/23 10:57:32 [HiveServer2-Background-Pool: Thread-85]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 10:57:32,289 Stage-5 map = 0%,  reduce = 0%
+2026-11-23 10:57:38,464 Stage-5 map = 100%,  reduce = 0%
+2026-11-23 10:57:43,588 Stage-5 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0146
+Launching Job 3 out of 5
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 10:57:44 [HiveServer2-Background-Pool: Thread-85]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0147, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0147/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0147
+Hadoop job information for Stage-2: number of mappers: 2; number of reducers: 1
+26/11/23 10:57:59 [HiveServer2-Background-Pool: Thread-85]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 10:57:59,256 Stage-2 map = 0%,  reduce = 0%
+2026-11-23 10:58:06,526 Stage-2 map = 100%,  reduce = 0%
+2026-11-23 10:58:11,663 Stage-2 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0147
+Launching Job 4 out of 5
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 10:58:13 [HiveServer2-Background-Pool: Thread-85]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0148, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0148/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0148
+Hadoop job information for Stage-3: number of mappers: 1; number of reducers: 1
+26/11/23 10:58:27 [HiveServer2-Background-Pool: Thread-85]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 10:58:27,053 Stage-3 map = 0%,  reduce = 0%
+2026-11-23 10:58:33,251 Stage-3 map = 100%,  reduce = 0%
+2026-11-23 10:58:38,376 Stage-3 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0148
+Launching Job 5 out of 5
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 10:58:39 [HiveServer2-Background-Pool: Thread-85]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0149, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0149/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0149
+Hadoop job information for Stage-4: number of mappers: 1; number of reducers: 1
+26/11/23 10:58:52 [HiveServer2-Background-Pool: Thread-85]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 10:58:52,853 Stage-4 map = 0%,  reduce = 0%
+2026-11-23 10:58:57,991 Stage-4 map = 100%,  reduce = 0%
+2026-11-23 10:59:05,208 Stage-4 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0149
+Moving data to directory /energy/output/hive/share_yearly
+Time taken to move files:	 13 ms
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   HDFS Read: 5153684 HDFS Write: 2397 HDFS EC Read: 0 SUCCESS
+Stage-Stage-5: Map: 1  Reduce: 1   HDFS Read: 5151212 HDFS Write: 1925 HDFS EC Read: 0 SUCCESS
+Stage-Stage-2: Map: 2  Reduce: 1   HDFS Read: 17068 HDFS Write: 2869 HDFS EC Read: 0 SUCCESS
+Stage-Stage-3: Map: 1  Reduce: 1   HDFS Read: 18194 HDFS Write: 3400 HDFS EC Read: 0 SUCCESS
+Stage-Stage-4: Map: 1  Reduce: 1   HDFS Read: 14008 HDFS Write: 2192 HDFS EC Read: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+
+
+
+
+
+
+
+
+
+
+
+
+
+1, 2)
+GROUP BY country,
+         CASE WHEN 
+
+
+
+
+
+
+
+
+26/11/23 10:59:06 [e92c47cb-6ef0-41b3-a2db-ac1339ba8545 main]: WARN parse.RowResolver: Found duplicate column alias in RR: g.country => {g, country, _col0: string} adding g.country => {g, country, _col4: string}
+26/11/23 10:59:06 [e92c47cb-6ef0-41b3-a2db-ac1339ba8545 main]: WARN parse.RowResolver: Found duplicate column alias in RR: g.year => {g, year, _col1: int} adding g.year => {g, year, _col5: int}
+26/11/23 10:59:06 [e92c47cb-6ef0-41b3-a2db-ac1339ba8545 main]: WARN parse.RowResolver: Found duplicate column alias in RR: g.mon => {g, mon, _col2: int} adding g.mon => {g, mon, _col6: int}
+26/11/23 10:59:06 [e92c47cb-6ef0-41b3-a2db-ac1339ba8545 main]: WARN calcite.RelOptHiveTable: No Stats for energy@energy_by_year, Columns: country, metric, value, mon
+No Stats for energy@energy_by_year, Columns: country, metric, value, mon
+26/11/23 10:59:06 [HiveServer2-Background-Pool: Thread-200]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez) or using Hive 1.X releases.
+Query ID = krishna_20261123105906_1024bbaa-2941-491f-8701-a3b906cfbf52
+Total jobs = 4
+Launching Job 1 out of 4
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 10:59:07 [HiveServer2-Background-Pool: Thread-200]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0150, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0150/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0150
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+26/11/23 10:59:20 [HiveServer2-Background-Pool: Thread-200]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 10:59:20,331 Stage-1 map = 0%,  reduce = 0%
+2026-11-23 10:59:26,487 Stage-1 map = 100%,  reduce = 0%
+2026-11-23 10:59:32,645 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0150
+Launching Job 2 out of 4
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 10:59:34 [HiveServer2-Background-Pool: Thread-200]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0151, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0151/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0151
+Hadoop job information for Stage-4: number of mappers: 1; number of reducers: 1
+26/11/23 10:59:47 [HiveServer2-Background-Pool: Thread-200]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 10:59:47,124 Stage-4 map = 0%,  reduce = 0%
+2026-11-23 10:59:53,323 Stage-4 map = 100%,  reduce = 0%
+2026-11-23 10:59:59,479 Stage-4 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0151
+Launching Job 3 out of 4
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:00:01 [HiveServer2-Background-Pool: Thread-200]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0152, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0152/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0152
+Hadoop job information for Stage-2: number of mappers: 2; number of reducers: 1
+26/11/23 11:00:14 [HiveServer2-Background-Pool: Thread-200]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:00:14,669 Stage-2 map = 0%,  reduce = 0%
+2026-11-23 11:00:22,021 Stage-2 map = 100%,  reduce = 0%
+2026-11-23 11:00:28,181 Stage-2 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0152
+Launching Job 4 out of 4
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:00:30 [HiveServer2-Background-Pool: Thread-200]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0153, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0153/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0153
+Hadoop job information for Stage-3: number of mappers: 1; number of reducers: 1
+26/11/23 11:00:43 [HiveServer2-Background-Pool: Thread-200]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:00:43,801 Stage-3 map = 0%,  reduce = 0%
+2026-11-23 11:00:52,441 Stage-3 map = 100%,  reduce = 0%
+2026-11-23 11:01:01,234 Stage-3 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0153
+Moving data to directory /energy/output/hive/share_monthly
+Time taken to move files:	 15 ms
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   HDFS Read: 5157067 HDFS Write: 27216 HDFS EC Read: 0 SUCCESS
+Stage-Stage-4: Map: 1  Reduce: 1   HDFS Read: 5154593 HDFS Write: 21792 HDFS EC Read: 0 SUCCESS
+Stage-Stage-2: Map: 2  Reduce: 1   HDFS Read: 63911 HDFS Write: 21792 HDFS EC Read: 0 SUCCESS
+Stage-Stage-3: Map: 1  Reduce: 1   HDFS Read: 31505 HDFS Write: 11581 HDFS EC Read: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+26/11/23 11:01:02 [e92c47cb-6ef0-41b3-a2db-ac1339ba8545 main]: WARN calcite.RelOptHiveTable: No Stats for energy@energy_hourly, Columns: country, load_mw, local_ts
+No Stats for energy@energy_hourly, Columns: country, load_mw, local_ts
+26/11/23 11:01:03 [HiveServer2-Background-Pool: Thread-291]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez) or using Hive 1.X releases.
+Query ID = krishna_20261123110102_7c159ba8-77b1-4cd8-9145-69f66730bf41
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:01:03 [HiveServer2-Background-Pool: Thread-291]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0154, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0154/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0154
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+26/11/23 11:01:16 [HiveServer2-Background-Pool: Thread-291]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:01:16,777 Stage-1 map = 0%,  reduce = 0%
+2026-11-23 11:01:23,065 Stage-1 map = 100%,  reduce = 0%
+2026-11-23 11:01:29,252 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0154
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:01:31 [HiveServer2-Background-Pool: Thread-291]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0155, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0155/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0155
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+26/11/23 11:01:44 [HiveServer2-Background-Pool: Thread-291]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:01:44,050 Stage-2 map = 0%,  reduce = 0%
+2026-11-23 11:01:49,181 Stage-2 map = 100%,  reduce = 0%
+2026-11-23 11:01:55,353 Stage-2 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0155
+Moving data to directory /energy/output/hive/load_curve_season
+Time taken to move files:	 11 ms
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   HDFS Read: 3451354 HDFS Write: 17376 HDFS EC Read: 0 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   HDFS Read: 26994 HDFS Write: 9614 HDFS EC Read: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+26/11/23 11:01:56 [e92c47cb-6ef0-41b3-a2db-ac1339ba8545 main]: WARN calcite.RelOptHiveTable: No Stats for energy@energy_hourly, Columns: country, load_mw, local_ts, wind_mw
+No Stats for energy@energy_hourly, Columns: country, load_mw, local_ts, wind_mw
+26/11/23 11:01:56 [HiveServer2-Background-Pool: Thread-338]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez) or using Hive 1.X releases.
+Query ID = krishna_20261123110156_c2d62296-1a33-4760-8b5c-b6d83ba20d1c
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:01:56 [HiveServer2-Background-Pool: Thread-338]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0156, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0156/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0156
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+26/11/23 11:02:09 [HiveServer2-Background-Pool: Thread-338]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:02:09,442 Stage-1 map = 0%,  reduce = 0%
+2026-11-23 11:02:16,632 Stage-1 map = 100%,  reduce = 0%
+2026-11-23 11:02:22,836 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0156
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:02:25 [HiveServer2-Background-Pool: Thread-338]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0157, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0157/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0157
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+26/11/23 11:02:38 [HiveServer2-Background-Pool: Thread-338]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:02:38,676 Stage-2 map = 0%,  reduce = 0%
+2026-11-23 11:02:43,827 Stage-2 map = 100%,  reduce = 0%
+2026-11-23 11:02:48,954 Stage-2 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0157
+Moving data to directory /energy/output/hive/wind_load_by_month
+Time taken to move files:	 10 ms
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   HDFS Read: 5099729 HDFS Write: 4536 HDFS EC Read: 0 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   HDFS Read: 14227 HDFS Write: 2310 HDFS EC Read: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+
+
+
+
+
+
+
+
+
+
+
+26/11/23 11:02:50 [e92c47cb-6ef0-41b3-a2db-ac1339ba8545 main]: WARN calcite.RelOptHiveTable: No Stats for energy@energy_hourly, Columns: country, load_mw, local_ts, wind_mw
+No Stats for energy@energy_hourly, Columns: country, load_mw, local_ts, wind_mw
+26/11/23 11:02:50 [HiveServer2-Background-Pool: Thread-385]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez) or using Hive 1.X releases.
+Query ID = krishna_20261123110250_dc1ada75-1b66-4bb8-aa9c-e0067ec7fa93
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:02:51 [HiveServer2-Background-Pool: Thread-385]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0158, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0158/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0158
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+26/11/23 11:03:02 [HiveServer2-Background-Pool: Thread-385]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:03:02,925 Stage-1 map = 0%,  reduce = 0%
+2026-11-23 11:03:11,178 Stage-1 map = 100%,  reduce = 0%
+2026-11-23 11:03:18,430 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0158
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:03:20 [HiveServer2-Background-Pool: Thread-385]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0159, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0159/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0159
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+26/11/23 11:03:33 [HiveServer2-Background-Pool: Thread-385]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:03:33,555 Stage-2 map = 0%,  reduce = 0%
+2026-11-23 11:03:37,698 Stage-2 map = 100%,  reduce = 0%
+2026-11-23 11:03:42,834 Stage-2 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0159
+Moving data to directory /energy/output/hive/wind_load_by_hour
+Time taken to move files:	 9 ms
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   HDFS Read: 5099718 HDFS Write: 8976 HDFS EC Read: 0 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   HDFS Read: 18657 HDFS Write: 4713 HDFS EC Read: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+26/11/23 11:03:45 [e92c47cb-6ef0-41b3-a2db-ac1339ba8545 main]: WARN calcite.RelOptHiveTable: No Stats for energy@energy_hourly, Columns: country, load_mw, local_ts, ts
+No Stats for energy@energy_hourly, Columns: country, load_mw, local_ts, ts
+26/11/23 11:03:45 [HiveServer2-Background-Pool: Thread-434]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez) or using Hive 1.X releases.
+Query ID = krishna_20261123110345_a569d040-b20f-485b-8442-069238e3bf25
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:03:45 [HiveServer2-Background-Pool: Thread-434]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0160, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0160/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0160
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+26/11/23 11:03:58 [HiveServer2-Background-Pool: Thread-434]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:03:58,450 Stage-1 map = 0%,  reduce = 0%
+2026-11-23 11:04:06,668 Stage-1 map = 100%,  reduce = 0%
+2026-11-23 11:04:19,062 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0160
+Moving data to directory hdfs://localhost:9000/energy/warehouse/energy.db/load_changes
+Time taken to move files:	 5 ms
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   HDFS Read: 4642261 HDFS Write: 12820221 HDFS EC Read: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+load is added for comparison.
+-- =================================================================================
+INS
+26/11/23 11:04:20 [e92c47cb-6ef0-41b3-a2db-ac1339ba8545 main]: WARN calcite.RelOptHiveTable: No Stats for energy@load_changes, Columns: change_pct, country, prev_load_mw, load_mw, change_mw, local_ts
+No Stats for energy@load_changes, Columns: change_pct, country, prev_load_mw, load_mw, change_mw, local_ts
+26/11/23 11:04:20 [HiveServer2-Background-Pool: Thread-459]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez) or using Hive 1.X releases.
+Query ID = krishna_20261123110420_e4d621d4-a7a5-424e-b5de-2f6452a2a316
+Total jobs = 5
+Launching Job 1 out of 5
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:04:21 [HiveServer2-Background-Pool: Thread-459]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0161, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0161/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0161
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+26/11/23 11:04:33 [HiveServer2-Background-Pool: Thread-459]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:04:33,330 Stage-1 map = 0%,  reduce = 0%
+2026-11-23 11:04:39,473 Stage-1 map = 100%,  reduce = 0%
+2026-11-23 11:04:45,652 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0161
+Launching Job 2 out of 5
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:04:47 [HiveServer2-Background-Pool: Thread-459]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0162, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0162/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0162
+Hadoop job information for Stage-8: number of mappers: 1; number of reducers: 1
+26/11/23 11:05:01 [HiveServer2-Background-Pool: Thread-459]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:05:01,253 Stage-8 map = 0%,  reduce = 0%
+2026-11-23 11:05:08,598 Stage-8 map = 100%,  reduce = 0%
+2026-11-23 11:05:14,768 Stage-8 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0162
+Launching Job 3 out of 5
+Number of reduce tasks is set to 0 since there's no reduce operator
+26/11/23 11:05:15 [HiveServer2-Background-Pool: Thread-459]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0163, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0163/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0163
+Hadoop job information for Stage-2: number of mappers: 2; number of reducers: 0
+26/11/23 11:05:29 [HiveServer2-Background-Pool: Thread-459]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:05:29,726 Stage-2 map = 0%,  reduce = 0%
+2026-11-23 11:05:35,986 Stage-2 map = 100%,  reduce = 0%
+Ended Job = job_1795405562072_0163
+Stage-4 is filtered out by condition resolver.
+Stage-3 is selected by condition resolver.
+Stage-5 is filtered out by condition resolver.
+Launching Job 5 out of 5
+Number of reduce tasks is set to 0 since there's no reduce operator
+26/11/23 11:05:38 [HiveServer2-Background-Pool: Thread-459]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0164, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0164/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0164
+Hadoop job information for Stage-3: number of mappers: 1; number of reducers: 0
+26/11/23 11:05:51 [HiveServer2-Background-Pool: Thread-459]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:05:51,315 Stage-3 map = 0%,  reduce = 0%
+2026-11-23 11:05:57,502 Stage-3 map = 100%,  reduce = 0%
+Ended Job = job_1795405562072_0164
+Moving data to directory /energy/output/hive/top_load_changes
+Time taken to move files:	 10 ms
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   HDFS Read: 11237369 HDFS Write: 1656 HDFS EC Read: 0 SUCCESS
+Stage-Stage-8: Map: 1  Reduce: 1   HDFS Read: 11237371 HDFS Write: 1656 HDFS EC Read: 0 SUCCESS
+Stage-Stage-2: Map: 2   HDFS Read: 13570 HDFS Write: 2422 HDFS EC Read: 0 SUCCESS
+Stage-Stage-3: Map: 1   HDFS Read: 5690 HDFS Write: 2422 HDFS EC Read: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+26/11/23 11:05:58 [e92c47cb-6ef0-41b3-a2db-ac1339ba8545 main]: WARN calcite.RelOptHiveTable: No Stats for energy@load_changes, Columns: change_pct, country, local_ts
+No Stats for energy@load_changes, Columns: change_pct, country, local_ts
+26/11/23 11:05:58 [HiveServer2-Background-Pool: Thread-545]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez) or using Hive 1.X releases.
+Query ID = krishna_20261123110558_3e8ff07f-27f1-43bf-a3d7-fd987117af9f
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:05:58 [HiveServer2-Background-Pool: Thread-545]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0165, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0165/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0165
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+26/11/23 11:06:13 [HiveServer2-Background-Pool: Thread-545]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:06:13,450 Stage-1 map = 0%,  reduce = 0%
+2026-11-23 11:06:23,136 Stage-1 map = 100%,  reduce = 0%
+2026-11-23 11:06:31,450 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0165
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:06:32 [HiveServer2-Background-Pool: Thread-545]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0166, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0166/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0166
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+26/11/23 11:06:46 [HiveServer2-Background-Pool: Thread-545]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:06:46,741 Stage-2 map = 0%,  reduce = 0%
+2026-11-23 11:06:50,853 Stage-2 map = 100%,  reduce = 0%
+2026-11-23 11:06:55,989 Stage-2 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0166
+Moving data to directory /energy/output/hive/load_change_by_hour
+Time taken to move files:	 10 ms
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   HDFS Read: 2395132 HDFS Write: 12816 HDFS EC Read: 0 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   HDFS Read: 23117 HDFS Write: 6648 HDFS EC Read: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+26/11/23 11:06:57 [e92c47cb-6ef0-41b3-a2db-ac1339ba8545 main]: WARN calcite.RelOptHiveTable: No Stats for energy@energy_hourly, Columns: country, load_mw, solar_mw, wind_mw
+No Stats for energy@energy_hourly, Columns: country, load_mw, solar_mw, wind_mw
+26/11/23 11:06:57 [HiveServer2-Background-Pool: Thread-590]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez) or using Hive 1.X releases.
+Query ID = krishna_20261123110657_24f76df2-e08f-48d6-afd9-2c3fc56515d6
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:06:58 [HiveServer2-Background-Pool: Thread-590]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0167, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0167/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0167
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+26/11/23 11:07:11 [HiveServer2-Background-Pool: Thread-590]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:07:11,779 Stage-1 map = 0%,  reduce = 0%
+2026-11-23 11:07:18,979 Stage-1 map = 100%,  reduce = 0%
+2026-11-23 11:07:24,104 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0167
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:07:26 [HiveServer2-Background-Pool: Thread-590]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0168, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0168/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0168
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+26/11/23 11:07:38 [HiveServer2-Background-Pool: Thread-590]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:07:38,893 Stage-2 map = 0%,  reduce = 0%
+2026-11-23 11:07:46,250 Stage-2 map = 100%,  reduce = 0%
+2026-11-23 11:07:53,467 Stage-2 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0168
+Moving data to directory /energy/output/hive/correlation
+Time taken to move files:	 17 ms
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   HDFS Read: 4915049 HDFS Write: 486 HDFS EC Read: 0 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   HDFS Read: 10099 HDFS Write: 212 HDFS EC Read: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+26/11/23 11:07:54 [e92c47cb-6ef0-41b3-a2db-ac1339ba8545 main]: WARN calcite.RelOptHiveTable: No Stats for energy@energy_hourly, Columns: country, load_mw, local_ts, solar_mw
+No Stats for energy@energy_hourly, Columns: country, load_mw, local_ts, solar_mw
+26/11/23 11:07:54 [HiveServer2-Background-Pool: Thread-637]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez) or using Hive 1.X releases.
+Query ID = krishna_20261123110754_3a6fed96-afee-488c-b77e-aac37784236f
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:07:55 [HiveServer2-Background-Pool: Thread-637]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0169, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0169/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0169
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+26/11/23 11:08:09 [HiveServer2-Background-Pool: Thread-637]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:08:09,089 Stage-1 map = 0%,  reduce = 0%
+2026-11-23 11:08:16,265 Stage-1 map = 100%,  reduce = 0%
+2026-11-23 11:08:22,439 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0169
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:08:24 [HiveServer2-Background-Pool: Thread-637]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0170, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0170/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0170
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+26/11/23 11:08:36 [HiveServer2-Background-Pool: Thread-637]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:08:36,095 Stage-2 map = 0%,  reduce = 0%
+2026-11-23 11:08:41,240 Stage-2 map = 100%,  reduce = 0%
+2026-11-23 11:08:47,416 Stage-2 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0170
+Moving data to directory /energy/output/hive/correlation_season
+Time taken to move files:	 11 ms
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   HDFS Read: 4459066 HDFS Write: 1306 HDFS EC Read: 0 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   HDFS Read: 11009 HDFS Write: 727 HDFS EC Read: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+
+
+
+
+
+
+
+26/11/23 11:08:48 [e92c47cb-6ef0-41b3-a2db-ac1339ba8545 main]: WARN calcite.RelOptHiveTable: No Stats for energy@energy_hourly, Columns: country, load_mw, local_ts, yr, solar_mw
+No Stats for energy@energy_hourly, Columns: country, load_mw, local_ts, yr, solar_mw
+26/11/23 11:08:48 [HiveServer2-Background-Pool: Thread-684]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez) or using Hive 1.X releases.
+Query ID = krishna_20261123110848_6cbf270b-11db-42ce-82a7-4ff6ebc74ca1
+Total jobs = 3
+Launching Job 1 out of 3
+Number of reduce tasks is set to 0 since there's no reduce operator
+26/11/23 11:08:48 [HiveServer2-Background-Pool: Thread-684]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0171, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0171/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0171
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 0
+26/11/23 11:09:01 [HiveServer2-Background-Pool: Thread-684]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:09:01,151 Stage-1 map = 0%,  reduce = 0%
+2026-11-23 11:09:08,387 Stage-1 map = 100%,  reduce = 0%
+Ended Job = job_1795405562072_0171
+Stage-3 is selected by condition resolver.
+Stage-2 is filtered out by condition resolver.
+Stage-4 is filtered out by condition resolver.
+Moving data to directory hdfs://localhost:9000/energy/output/hive/scatter_de_2019/.hive-staging_hive_2026-11-23_11-08-48_523_7848759464418617010-1/-ext-10000
+Time taken to move files:	 4 ms
+Moving data to directory /energy/output/hive/scatter_de_2019
+Time taken to move files:	 9 ms
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1   HDFS Read: 4449000 HDFS Write: 295209 HDFS EC Read: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+
+
+26/11/23 11:09:10 [pool-48-thread-2]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 11:09:10 [pool-48-thread-2]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 11:09:10 [pool-48-thread-1]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 11:09:10 [pool-48-thread-1]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 11:09:10 [shutdown-hook-0]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 11:09:10 [shutdown-hook-0]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit

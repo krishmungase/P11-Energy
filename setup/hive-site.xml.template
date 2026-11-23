@@ -52,4 +52,11 @@
     <name>hive.stats.autogather</name>
     <value>false</value>
   </property>
+  <!-- Hive 4 quietly turns every non-transactional "managed" table into an EXTERNAL table
+       (TRANSLATED_TO_EXTERNAL=TRUE). The project rules ask for a real managed table, so we
+       switch that translator off. A blank value means "no transformer". -->
+  <property>
+    <name>metastore.metadata.transformer.class</name>
+    <value> </value>
+  </property>
 </configuration>

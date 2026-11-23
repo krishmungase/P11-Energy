@@ -1,0 +1,527 @@
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/Users/krishna/Desktop/BDA/tools/apache-hive-4.2.1-bin/lib/log4j-slf4j-impl-2.24.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/Users/krishna/Desktop/BDA/tools/apache-hive-4.2.1-bin/lib/log4j-slf4j-impl-2.24.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+26/11/23 10:53:00 [main]: WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Hive Session ID = 68793585-5a3b-405a-8d24-cab0110e9407
+26/11/23 10:53:03 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:53:03 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:53:03 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:53:03 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:53:03 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:53:03 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:53:03 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:53:03 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:53:03 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:53:03 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:53:03 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:53:03 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 10:53:05 [main]: WARN exec.FunctionRegistry: UDF Class org.apache.hadoop.hive.ql.udf.generic.GenericUDFToJson does not have description. Please annotate the class with the org.apache.hadoop.hive.ql.exec.Description annotation and provide the description of the function.
+26/11/23 10:53:05 [main]: WARN session.SessionState: Configuration hive.reloadable.aux.jars.path not specified
+-- Runs at the start of every Hive session (hive/run_hive.sh passes it with -i).
+-- Hive's map tasks need commons-collections 3 inside the YARN containers, and Hadoop 3.4
+-- does not ship it. ADD JAR sends the jar along with every job in this session.
+-- (HIVE_AUX_JARS_PATH and hive.aux.jars.path did not work in embedded beeline; we tried.)
+ADD JAR ${env:HIVE_HOME}/lib/commons-collections-3.2.2.jar;
+
+-- Joins: Hive normally turns a join with a small table into a "map join". For that it first
+-- starts a separate local Java process (MapredLocalTask) to build a hash table of the small
+-- table. That child process does not get our env.sh fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Step 4 + Step 6 (part 1): Hive tables.
+-- Run:  bash hive/run_hive.sh hive/01_tables.sql
+--
+-- Tables made here:
+--   energy_raw_ext         EXTERNAL, CSV text, points at /energy/long/full      (full data)
+--   energy_raw_ext_sample  EXTERNAL, CSV text, points at /energy/long/sample    (2019 only, for the scale test)
+--   energy_parquet         MANAGED, PARQUET, filled from energy_raw_ext, with extra time columns
+--   energy_by_year         MANAGED, ORC, PARTITIONED BY (year), filled with dynamic partitioning
+--   energy_hourly          MANAGED, PARQUET, one row per country per hour with load/solar/wind side by side
+
+CREATE DATABASE IF NOT EXISTS energy;
+USE energy;
+
+-- ------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+26/11/23 10:53:14 [HiveServer2-Background-Pool: Thread-88]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez) or using Hive 1.X releases.
+Query ID = krishna_20261123105310_8881d0dc-08cb-472e-9eed-19b2737bb1ca
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 10:53:15 [HiveServer2-Background-Pool: Thread-88]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0139, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0139/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0139
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+26/11/23 10:53:29 [HiveServer2-Background-Pool: Thread-88]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 10:53:29,444 Stage-1 map = 0%,  reduce = 0%
+2026-11-23 10:53:38,191 Stage-1 map = 100%,  reduce = 0%
+2026-11-23 10:53:47,759 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0139
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   HDFS Read: 52910431 HDFS Write: 107 HDFS EC Read: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
++------------+
+| full_rows  |
++------------+
+| 1480855    |
++------------+
+
++-------------------------------+----------------------------------------------------+-----------------------+
+|           col_name            |                     data_type                      |        comment        |
++-------------------------------+----------------------------------------------------+-----------------------+
+| ts                            | string                                             |                       |
+| country                       | string                                             |                       |
+| metric                        | string                                             |                       |
+| value                         | double                                             |                       |
+|                               | NULL                                               | NULL                  |
+| # Detailed Table Information  | NULL                                               | NULL                  |
+| Database:                     | energy                                             | NULL                  |
+| OwnerType:                    | USER                                               | NULL                  |
+| Owner:                        | krishna                                            | NULL                  |
+| CreateTime:                   | Mon Nov 23 10:53:10 IST 2026                       | NULL                  |
+| LastAccessTime:               | UNKNOWN                                            | NULL                  |
+| Retention:                    | 0                                                  | NULL                  |
+| Location:                     | hdfs://localhost:9000/energy/long/full             | NULL                  |
+| Table Type:                   | EXTERNAL_TABLE                                     | NULL                  |
+| Table Parameters:             | NULL                                               | NULL                  |
+|                               | EXTERNAL                                           | TRUE                  |
+|                               | bucketing_version                                  | 2                     |
+|                               | transient_lastDdlTime                              | 1795411390            |
+|                               | NULL                                               | NULL                  |
+| # Storage Information         | NULL                                               | NULL                  |
+| SerDe Library:                | org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe | NULL                  |
+| InputFormat:                  | org.apache.hadoop.mapred.TextInputFormat           | NULL                  |
+| OutputFormat:                 | org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat | NULL                  |
+| Compressed:                   | No                                                 | NULL                  |
+| Num Buckets:                  | -1                                                 | NULL                  |
+| Bucket Columns:               | []                                                 | NULL                  |
+| Sort Columns:                 | []                                                 | NULL                  |
+| Storage Desc Params:          | NULL                                               | NULL                  |
+|                               | field.delim                                        | ,                     |
+|                               | serialization.format                               | ,                     |
++-------------------------------+----------------------------------------------------+-----------------------+
+
+26/11/23 10:53:49 [525ef28d-e57e-4c99-8b3a-e52a80966064 main]: WARN calcite.RelOptHiveTable: No Stats for energy@energy_raw_ext, Columns: country, metric, value, ts
+No Stats for energy@energy_raw_ext, Columns: country, metric, value, ts
+26/11/23 10:53:49 [525ef28d-e57e-4c99-8b3a-e52a80966064 main]: WARN optimizer.SimpleFetchOptimizer: Cannot determine basic stats for table: energy@energy_raw_ext from metastore. Falling back.
++----------------------+-------------------------+------------------------+-----------------------+
+|  energy_raw_ext.ts   | energy_raw_ext.country  | energy_raw_ext.metric  | energy_raw_ext.value  |
++----------------------+-------------------------+------------------------+-----------------------+
+| 2015-01-01 00:00:00  | AT                      | load                   | 5946.0                |
+| 2015-01-01 00:00:00  | AT                      | wind                   | 69.0                  |
+| 2015-01-01 00:00:00  | BE                      | load                   | 9484.0                |
+| 2015-01-01 00:00:00  | DE                      | load                   | 41151.0               |
+| 2015-01-01 00:00:00  | DE                      | wind                   | 8852.0                |
++----------------------+-------------------------+------------------------+-----------------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------
+
+
+
+
+
+
+26/11/23 10:53:49 [525ef28d-e57e-4c99-8b3a-e52a80966064 main]: WARN calcite.RelOptHiveTable: No Stats for energy@energy_raw_ext, Columns: country, metric, value, ts
+No Stats for energy@energy_raw_ext, Columns: country, metric, value, ts
+26/11/23 10:53:49 [HiveServer2-Background-Pool: Thread-121]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez) or using Hive 1.X releases.
+Query ID = krishna_20261123105349_9a88e8a8-346f-45da-87ee-0ef0546c2128
+Total jobs = 3
+Launching Job 1 out of 3
+Number of reduce tasks is set to 0 since there's no reduce operator
+26/11/23 10:53:49 [HiveServer2-Background-Pool: Thread-121]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0140, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0140/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0140
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 0
+26/11/23 10:54:02 [HiveServer2-Background-Pool: Thread-121]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 10:54:02,445 Stage-1 map = 0%,  reduce = 0%
+2026-11-23 10:54:25,015 Stage-1 map = 100%,  reduce = 0%
+Ended Job = job_1795405562072_0140
+Stage-3 is selected by condition resolver.
+Stage-2 is filtered out by condition resolver.
+Stage-4 is filtered out by condition resolver.
+Moving data to directory hdfs://localhost:9000/energy/warehouse/energy.db/.hive-staging_hive_2026-11-23_10-53-49_427_8111005400744370101-1/-ext-10002
+Time taken to move files:	 6 ms
+Moving data to directory hdfs://localhost:9000/energy/warehouse/energy.db/energy_parquet
+Time taken to move files:	 5 ms
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1   HDFS Read: 52905882 HDFS Write: 8314526 HDFS EC Read: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+
+
+26/11/23 10:54:27 [HiveServer2-Background-Pool: Thread-146]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez) or using Hive 1.X releases.
+Query ID = krishna_20261123105427_600b9e07-9090-423c-bd55-16b28680462b
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 10:54:27 [HiveServer2-Background-Pool: Thread-146]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0141, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0141/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0141
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+26/11/23 10:54:41 [HiveServer2-Background-Pool: Thread-146]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 10:54:41,047 Stage-1 map = 0%,  reduce = 0%
+2026-11-23 10:54:50,835 Stage-1 map = 100%,  reduce = 0%
+2026-11-23 10:55:02,008 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0141
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   HDFS Read: 8313360 HDFS Write: 107 HDFS EC Read: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
++---------------+
+| parquet_rows  |
++---------------+
+| 1480855       |
++---------------+
+
++-------------------------------+----------------------------------------------------+-----------------------+
+|           col_name            |                     data_type                      |        comment        |
++-------------------------------+----------------------------------------------------+-----------------------+
+| ts                            | timestamp                                          |                       |
+| country                       | string                                             |                       |
+| metric                        | string                                             |                       |
+| value                         | double                                             |                       |
+| yr                            | int                                                |                       |
+| mon                           | int                                                |                       |
+| utc_hour                      | int                                                |                       |
+| local_ts                      | timestamp                                          |                       |
+|                               | NULL                                               | NULL                  |
+| # Detailed Table Information  | NULL                                               | NULL                  |
+| Database:                     | energy                                             | NULL                  |
+| OwnerType:                    | USER                                               | NULL                  |
+| Owner:                        | krishna                                            | NULL                  |
+| CreateTime:                   | Mon Nov 23 10:54:27 IST 2026                       | NULL                  |
+| LastAccessTime:               | UNKNOWN                                            | NULL                  |
+| Retention:                    | 0                                                  | NULL                  |
+| Location:                     | hdfs://localhost:9000/energy/warehouse/energy.db/energy_parquet | NULL                  |
+| Table Type:                   | MANAGED_TABLE                                      | NULL                  |
+| Table Parameters:             | NULL                                               | NULL                  |
+|                               | bucketing_version                                  | 2                     |
+|                               | transient_lastDdlTime                              | 1795411467            |
+|                               | NULL                                               | NULL                  |
+| # Storage Information         | NULL                                               | NULL                  |
+| SerDe Library:                | org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe | NULL                  |
+| InputFormat:                  | org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat | NULL                  |
+| OutputFormat:                 | org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat | NULL                  |
+| Compressed:                   | No                                                 | NULL                  |
+| Num Buckets:                  | -1                                                 | NULL                  |
+| Bucket Columns:               | []                                                 | NULL                  |
+| Sort Columns:                 | []                                                 | NULL                  |
+| Storage Desc Params:          | NULL                                               | NULL                  |
+|                               | serialization.format                               | 1                     |
++-------------------------------+----------------------------------------------------+-----------------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+26/11/23 10:55:04 [525ef28d-e57e-4c99-8b3a-e52a80966064 main]: WARN parse.BaseSemanticAnalyzer: Dynamic partitioning is used; only validating 0 columns
+26/11/23 10:55:04 [525ef28d-e57e-4c99-8b3a-e52a80966064 main]: WARN calcite.RelOptHiveTable: No Stats for energy@energy_parquet, Columns: country, metric, local_ts, yr, value, mon, ts
+No Stats for energy@energy_parquet, Columns: country, metric, local_ts, yr, value, mon, ts
+26/11/23 10:55:04 [525ef28d-e57e-4c99-8b3a-e52a80966064 main]: WARN parse.BaseSemanticAnalyzer: Dynamic partitioning is used; only validating 0 columns
+26/11/23 10:55:05 [HiveServer2-Background-Pool: Thread-179]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez) or using Hive 1.X releases.
+Query ID = krishna_20261123105504_0631635f-bd08-49af-81f1-9912418d7b8e
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 10:55:05 [HiveServer2-Background-Pool: Thread-179]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0142, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0142/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0142
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+26/11/23 10:55:20 [HiveServer2-Background-Pool: Thread-179]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 10:55:20,010 Stage-1 map = 0%,  reduce = 0%
+2026-11-23 10:55:30,332 Stage-1 map = 100%,  reduce = 0%
+2026-11-23 10:55:40,614 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0142
+Loading data to table energy.energy_by_year partition (year=null)
+
+
+Time taken to load dynamic partitions:	 0.140 seconds
+Time taken for adding to write entity:	 0.001 seconds
+Time taken to move files:	 0 ms
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   HDFS Read: 8295282 HDFS Write: 5557070 HDFS EC Read: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+
+
++------------+
+| partition  |
++------------+
+| year=2015  |
+| year=2016  |
+| year=2017  |
+| year=2018  |
+| year=2019  |
+| year=2020  |
++------------+
+
++-------------------------------+----------------------------------------------------+-----------------------+
+|           col_name            |                     data_type                      |        comment        |
++-------------------------------+----------------------------------------------------+-----------------------+
+| ts                            | timestamp                                          |                       |
+| country                       | string                                             |                       |
+| metric                        | string                                             |                       |
+| value                         | double                                             |                       |
+| mon                           | int                                                |                       |
+| local_ts                      | timestamp                                          |                       |
+|                               | NULL                                               | NULL                  |
+| # Partition Information       | NULL                                               | NULL                  |
+| # col_name                    | data_type                                          | comment               |
+| year                          | int                                                |                       |
+|                               | NULL                                               | NULL                  |
+| # Detailed Table Information  | NULL                                               | NULL                  |
+| Database:                     | energy                                             | NULL                  |
+| OwnerType:                    | USER                                               | NULL                  |
+| Owner:                        | krishna                                            | NULL                  |
+| CreateTime:                   | Mon Nov 23 10:55:04 IST 2026                       | NULL                  |
+| LastAccessTime:               | UNKNOWN                                            | NULL                  |
+| Retention:                    | 0                                                  | NULL                  |
+| Location:                     | hdfs://localhost:9000/energy/warehouse/energy.db/energy_by_year | NULL                  |
+| Table Type:                   | MANAGED_TABLE                                      | NULL                  |
+| Table Parameters:             | NULL                                               | NULL                  |
+|                               | bucketing_version                                  | 2                     |
+|                               | numFiles                                           | 6                     |
+|                               | numPartitions                                      | 6                     |
+|                               | numRows                                            | 0                     |
+|                               | rawDataSize                                        | 0                     |
+|                               | totalSize                                          | 5557070               |
+|                               | transient_lastDdlTime                              | 1795411504            |
+|                               | NULL                                               | NULL                  |
+| # Storage Information         | NULL                                               | NULL                  |
+| SerDe Library:                | org.apache.hadoop.hive.ql.io.orc.OrcSerde          | NULL                  |
+| InputFormat:                  | org.apache.hadoop.hive.ql.io.orc.OrcInputFormat    | NULL                  |
+| OutputFormat:                 | org.apache.hadoop.hive.ql.io.orc.OrcOutputFormat   | NULL                  |
+| Compressed:                   | No                                                 | NULL                  |
+| Num Buckets:                  | -1                                                 | NULL                  |
+| Bucket Columns:               | []                                                 | NULL                  |
+| Sort Columns:                 | []                                                 | NULL                  |
+| Storage Desc Params:          | NULL                                               | NULL                  |
+|                               | serialization.format                               | 1                     |
++-------------------------------+----------------------------------------------------+-----------------------+
+
+
+
+
++----------------------------------------------------+
+|                      Explain                       |
++----------------------------------------------------+
+| {"input_tables":[{"tablename":"energy@energy_by_year","tabletype":"MANAGED_TABLE"}],"input_partitions":[{"partitionName":"energy@energy_by_year@year=2019"}]} |
++----------------------------------------------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+26/11/23 10:55:42 [525ef28d-e57e-4c99-8b3a-e52a80966064 main]: WARN calcite.RelOptHiveTable: No Stats for energy@energy_parquet, Columns: country, metric, local_ts, yr, value, mon, ts
+No Stats for energy@energy_parquet, Columns: country, metric, local_ts, yr, value, mon, ts
+26/11/23 10:55:42 [HiveServer2-Background-Pool: Thread-239]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez) or using Hive 1.X releases.
+Query ID = krishna_20261123105542_c2b434aa-9292-4f2b-8ebe-f41e42fec6b5
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 10:55:43 [HiveServer2-Background-Pool: Thread-239]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0143, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0143/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0143
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+26/11/23 10:55:54 [HiveServer2-Background-Pool: Thread-239]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 10:55:54,555 Stage-1 map = 0%,  reduce = 0%
+2026-11-23 10:56:03,801 Stage-1 map = 100%,  reduce = 0%
+2026-11-23 10:56:13,053 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0143
+Moving data to directory hdfs://localhost:9000/energy/warehouse/energy.db/energy_hourly
+Time taken to move files:	 5 ms
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   HDFS Read: 8303390 HDFS Write: 7291194 HDFS EC Read: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+
+
+26/11/23 10:56:14 [HiveServer2-Background-Pool: Thread-264]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez) or using Hive 1.X releases.
+Query ID = krishna_20261123105614_619296b9-09e1-44e5-b828-4f840487889f
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 10:56:14 [HiveServer2-Background-Pool: Thread-264]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0144, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0144/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0144
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+26/11/23 10:56:27 [HiveServer2-Background-Pool: Thread-264]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 10:56:27,563 Stage-1 map = 0%,  reduce = 0%
+2026-11-23 10:56:33,751 Stage-1 map = 100%,  reduce = 0%
+2026-11-23 10:56:38,887 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0144
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   HDFS Read: 7301049 HDFS Write: 106 HDFS EC Read: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
++--------------+
+| hourly_rows  |
++--------------+
+| 495172       |
++--------------+
+
+
++------------------------+
+|        tab_name        |
++------------------------+
+| energy_by_year         |
+| energy_hourly          |
+| energy_parquet         |
+| energy_raw_ext         |
+| energy_raw_ext_sample  |
+| load_changes           |
++------------------------+
+
+
+26/11/23 10:56:40 [pool-20-thread-2]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 10:56:40 [pool-20-thread-2]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 10:56:40 [pool-20-thread-1]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 10:56:40 [pool-20-thread-1]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 10:56:40 [shutdown-hook-0]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 10:56:40 [shutdown-hook-0]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
