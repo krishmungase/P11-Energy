@@ -1,0 +1,84 @@
+2026-11-23 11:18:50,354 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2026-11-23 11:18:50,768 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at localhost/127.0.0.1:8032
+2026-11-23 11:18:51,011 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/krishna/.staging/job_1795405562072_0183
+2026-11-23 11:18:51,202 INFO input.FileInputFormat: Total input files to process : 1
+2026-11-23 11:18:51,255 INFO mapreduce.JobSubmitter: number of splits:2
+2026-11-23 11:18:51,363 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1795405562072_0183
+2026-11-23 11:18:51,363 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2026-11-23 11:18:51,461 INFO conf.Configuration: resource-types.xml not found
+2026-11-23 11:18:51,461 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+2026-11-23 11:18:51,529 INFO impl.YarnClientImpl: Submitted application application_1795405562072_0183
+2026-11-23 11:18:51,545 INFO mapreduce.Job: The url to track the job: http://localhost:8088/proxy/application_1795405562072_0183/
+2026-11-23 11:18:51,545 INFO mapreduce.Job: Running job: job_1795405562072_0183
+2026-11-23 11:18:58,633 INFO mapreduce.Job: Job job_1795405562072_0183 running in uber mode : false
+2026-11-23 11:18:58,634 INFO mapreduce.Job:  map 0% reduce 0%
+2026-11-23 11:19:14,875 INFO mapreduce.Job:  map 100% reduce 0%
+2026-11-23 11:19:22,990 INFO mapreduce.Job:  map 100% reduce 33%
+2026-11-23 11:19:24,004 INFO mapreduce.Job:  map 100% reduce 67%
+2026-11-23 11:19:25,018 INFO mapreduce.Job:  map 100% reduce 100%
+2026-11-23 11:19:25,029 INFO mapreduce.Job: Job job_1795405562072_0183 completed successfully
+2026-11-23 11:19:25,108 INFO mapreduce.Job: Counters: 54
+	File System Counters
+		FILE: Number of bytes read=326302
+		FILE: Number of bytes written=1931380
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=264481496
+		HDFS: Number of bytes written=43528
+		HDFS: Number of read operations=21
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=6
+		HDFS: Number of bytes read erasure-coded=0
+	Job Counters 
+		Killed reduce tasks=1
+		Launched map tasks=2
+		Launched reduce tasks=3
+		Data-local map tasks=2
+		Total time spent by all maps in occupied slots (ms)=55900
+		Total time spent by all reduces in occupied slots (ms)=29024
+		Total time spent by all map tasks (ms)=27950
+		Total time spent by all reduce tasks (ms)=14512
+		Total vcore-milliseconds taken by all map tasks=27950
+		Total vcore-milliseconds taken by all reduce tasks=14512
+		Total megabyte-milliseconds taken by all map tasks=28620800
+		Total megabyte-milliseconds taken by all reduce tasks=14860288
+	Map-Reduce Framework
+		Map input records=7404275
+		Map output records=7404275
+		Map output bytes=436852225
+		Map output materialized bytes=82752
+		Input split bytes=250
+		Combine input records=7407734
+		Combine output records=4815
+		Reduce input groups=678
+		Reduce shuffle bytes=82752
+		Reduce input records=1356
+		Reduce output records=678
+		Spilled Records=6171
+		Shuffled Maps =6
+		Failed Shuffles=0
+		Merged Map outputs=6
+		GC time elapsed (ms)=423
+		CPU time spent (ms)=0
+		Physical memory (bytes) snapshot=0
+		Virtual memory (bytes) snapshot=0
+		Total committed heap usage (bytes)=703594496
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=264481246
+	File Output Format Counters 
+		Bytes Written=43528
+	p11.EnergyCounters
+		LOAD_RECORDS=2474600
+		SOLAR_RECORDS=2474380
+		WIND_RECORDS=2455295
+
+Wall clock seconds: 36.6
+Exit code: 0

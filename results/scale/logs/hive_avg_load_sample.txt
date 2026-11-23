@@ -1,0 +1,114 @@
++----------+-------+---------------------+
+| country  |  yr   |         _c2         |
++----------+-------+---------------------+
+| AT       | 2019  | 7201.518493150685   |
+| BE       | 2019  | 9697.428196347031   |
+| CZ       | 2019  | 7554.515198630124   |
+| DE       | 2019  | 55990.25867579909   |
+| DK       | 2019  | 3829.262104361735   |
+| ES       | 2019  | 28537.467465753423  |
+| FR       | 2019  | 53383.17007424329   |
+| GR       | 2019  | 5899.043665525112   |
+| IT       | 2019  | 33578.75684931507   |
+| PT       | 2019  | 5747.636472602733   |
++----------+-------+---------------------+
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/Users/krishna/Desktop/BDA/tools/apache-hive-4.2.1-bin/lib/log4j-slf4j-impl-2.24.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/Users/krishna/Desktop/BDA/tools/apache-hive-4.2.1-bin/lib/log4j-slf4j-impl-2.24.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+26/11/23 11:29:51 [main]: WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Hive Session ID = 1898316c-319a-4d0b-913f-d05fe5bad358
+26/11/23 11:29:55 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:29:55 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:29:55 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:29:55 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:29:55 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:29:55 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:29:56 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:29:56 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:29:56 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:29:56 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:29:56 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:29:56 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:29:57 [main]: WARN exec.FunctionRegistry: UDF Class org.apache.hadoop.hive.ql.udf.generic.GenericUDFToJson does not have description. Please annotate the class with the org.apache.hadoop.hive.ql.exec.Description annotation and provide the description of the function.
+26/11/23 11:29:57 [main]: WARN session.SessionState: Configuration hive.reloadable.aux.jars.path not specified
+-- Runs at the start of every Hive session (hive/run_hive.sh passes it with -i).
+-- Hive's map tasks need commons-collections 3 inside the YARN containers, and Hadoop 3.4
+-- does not ship it. ADD JAR sends the jar along with every job in this session.
+-- (HIVE_AUX_JARS_PATH and hive.aux.jars.path did not work in embedded beeline; we tried.)
+ADD JAR ${env:HIVE_HOME}/lib/commons-collections-3.2.2.jar;
+
+-- Joins: Hive normally turns a join with a small table into a "map join". For that it first
+-- starts a separate local Java process (MapredLocalTask) to build a hash table of the small
+-- table. That child process does not get our env.sh fixes and fails with exit status 1.
+-- With this off, Hive does a normal reduce-side join: both tables are shuffled by the join
+-- key and matched in the reducer. Slower for tiny tables, but it works and is easy to explain.
+SET hive.auto.convert.join=false;
+0: jdbc:hive2://> -- Runs at the start of every Hive session (hive/run_hive.sh passes it with -i).
+
+0: jdbc:hive2://> -- Hive's map tasks need commons-collections 3 inside the YARN containers, and Hadoop 3.4
+
+0: jdbc:hive2://> -- does not ship it. ADD JAR sends the jar along with every job in this session.
+
+0: jdbc:hive2://> -- (HIVE_AUX_JARS_PATH and hive.aux.jars.path did not work in embedded beeline; we tried.)
+
+0: jdbc:hive2://> ADD JAR ${env:HIVE_HOME}/lib/commons-collections-3.2.2.jar;
+
+0: jdbc:hive2://> 
+
+0: jdbc:hive2://> -- Joins: Hive normally turns a join with a small table into a "map join". For that it first
+
+0: jdbc:hive2://> -- starts a separate local Java process (MapredLocalTask) to build a hash table of the small
+
+0: jdbc:hive2://> -- table. That child process does not get our env.sh fixes and fails with exit status 1.
+
+0: jdbc:hive2://> -- With this off, Hive does a normal reduce-side join: both tables are shuffled by the join
+
+0: jdbc:hive2://> -- key and matched in the reducer. Slower for tiny tables, but it works and is easy to explain.
+
+0: jdbc:hive2://> SET hive.auto.convert.join=false;
+
+0: jdbc:hive2://> 
+
+0: jdbc:hive2://> 
+
+26/11/23 11:30:01 [4d60cfd6-4332-4ad3-8f55-1dd1bb827499 main]: WARN calcite.RelOptHiveTable: No Stats for energy@energy_raw_ext_sample, Columns: country, metric, value, ts
+No Stats for energy@energy_raw_ext_sample, Columns: country, metric, value, ts
+26/11/23 11:30:02 [HiveServer2-Background-Pool: Thread-78]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez) or using Hive 1.X releases.
+Query ID = krishna_20261123112959_a7e0307d-0c90-46c7-b378-c0b253cb3e2a
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:30:02 [HiveServer2-Background-Pool: Thread-78]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0210, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0210/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0210
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+26/11/23 11:30:13 [HiveServer2-Background-Pool: Thread-78]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:30:13,042 Stage-1 map = 0%,  reduce = 0%
+2026-11-23 11:30:19,417 Stage-1 map = 100%,  reduce = 0%
+2026-11-23 11:30:27,977 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0210
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   HDFS Read: 9388982 HDFS Write: 468 HDFS EC Read: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+26/11/23 11:30:30 [pool-13-thread-2]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 11:30:30 [pool-13-thread-2]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 11:30:30 [pool-13-thread-1]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 11:30:30 [pool-13-thread-1]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 11:30:30 [shutdown-hook-0]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 11:30:30 [shutdown-hook-0]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+
+Wall clock seconds: 45.0
+Exit code: 0

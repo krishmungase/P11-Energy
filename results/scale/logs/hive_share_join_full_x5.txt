@@ -1,0 +1,201 @@
++------------+-------+-----------------------+
+| g.country  | g.yr  |         share         |
++------------+-------+-----------------------+
+| AT         | 2015  | 0.09647777976801461   |
+| AT         | 2016  | 0.10008069481085043   |
+| AT         | 2017  | 0.12385204708606021   |
+| AT         | 2018  | 0.12284764837630026   |
+| AT         | 2019  | 0.14751951254826362   |
+| AT         | 2020  | 0.14902280872066226   |
+| BE         | 2015  | 0.09441814480719891   |
+| BE         | 2016  | 0.09006996951222185   |
+| BE         | 2017  | 0.09931401475481542   |
+| BE         | 2018  | 0.11821499738100269   |
+| BE         | 2019  | 0.14384531585478988   |
+| BE         | 2020  | 0.19895828114304145   |
+| CZ         | 2015  | 0.04476405834957606   |
+| CZ         | 2016  | 0.04023108506045401   |
+| CZ         | 2017  | 0.0410618811096522    |
+| CZ         | 2018  | 0.04399717975632668   |
+| CZ         | 2019  | 0.0443632700318965    |
+| CZ         | 2020  | 0.052488083523102885  |
+| DE         | 2015  | 0.23377196250482313   |
+| DE         | 2016  | 0.2284128438147954    |
+| DE         | 2017  | 0.2815471107704537    |
+| DE         | 2018  | 0.3002563608415848    |
+| DE         | 2019  | 0.3378698748122497    |
+| DE         | 2020  | 0.3861139905451188    |
+| DK         | 2015  | 0.4343520116595864    |
+| DK         | 2016  | 0.391421887907036     |
+| DK         | 2017  | 0.4670848524271472    |
+| DK         | 2018  | 0.4441606685710383    |
+| DK         | 2019  | 0.5038040100947454    |
+| DK         | 2020  | 0.5358084877344715    |
+| ES         | 2015  | 0.24443759324135203   |
+| ES         | 2016  | 0.23928155084217276   |
+| ES         | 2017  | 0.2382867172168195    |
+| ES         | 2018  | 0.2393476146532808    |
+| ES         | 2019  | 0.2672431867187505    |
+| ES         | 2020  | 0.2986635436846583    |
+| FR         | 2015  | 0.05667378812459115   |
+| FR         | 2016  | 0.05779768355083018   |
+| FR         | 2017  | 0.0665693949605579    |
+| FR         | 2018  | 0.07749868759663911   |
+| FR         | 2019  | 0.09439653093095343   |
+| FR         | 2020  | 0.11774916619065215   |
+| GR         | 2015  | 0.1400474834180464    |
+| GR         | 2016  | 0.14529109033432866   |
+| GR         | 2017  | 0.15264002829884682   |
+| GR         | 2018  | 0.161616872994205     |
+| GR         | 2019  | 0.18205566785762345   |
+| GR         | 2020  | 0.2300341875383876    |
+| IT         | 2016  | 0.12324162369657313   |
+| IT         | 2017  | 0.12783521285957325   |
+| IT         | 2018  | 0.11823040832486349   |
+| IT         | 2019  | 0.13265918388348308   |
+| IT         | 2020  | 0.15481508865931878   |
+| PT         | 2015  | 0.24700830577767025   |
+| PT         | 2016  | 0.2632196898355757    |
+| PT         | 2017  | 0.25823529779800025   |
+| PT         | 2018  | 0.25888332638364736   |
+| PT         | 2019  | 0.2877221271149682    |
+| PT         | 2020  | 0.2544952150548347    |
++------------+-------+-----------------------+
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/Users/krishna/Desktop/BDA/tools/apache-hive-4.2.1-bin/lib/log4j-slf4j-impl-2.24.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/Users/krishna/Desktop/BDA/tools/apache-hive-4.2.1-bin/lib/log4j-slf4j-impl-2.24.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+26/11/23 11:35:25 [main]: WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Hive Session ID = 9ef2c6fd-4165-4aa6-83eb-622910a2cc79
+26/11/23 11:35:28 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:35:28 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:35:28 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:35:28 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:35:28 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:35:28 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:35:28 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:35:28 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:35:28 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:35:28 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:35:28 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:35:28 [main]: WARN DataNucleus.MetaData: Metadata has jdbc-type of 'string' yet this is not valid. Ignored
+26/11/23 11:35:30 [main]: WARN exec.FunctionRegistry: UDF Class org.apache.hadoop.hive.ql.udf.generic.GenericUDFToJson does not have description. Please annotate the class with the org.apache.hadoop.hive.ql.exec.Description annotation and provide the description of the function.
+26/11/23 11:35:30 [main]: WARN session.SessionState: Configuration hive.reloadable.aux.jars.path not specified
+-- Runs at the start of every Hive session (hive/run_hive.sh passes it with -i).
+-- Hive's map tasks need commons-collections 3 inside the YARN containers, and Hadoop 3.4
+-- does not ship it. ADD JAR sends the jar along with every job in this session.
+-- (HIVE_AUX_JARS_PATH and hive.aux.jars.path did not work in embedded beeline; we tried.)
+ADD JAR ${env:HIVE_HOME}/lib/commons-collections-3.2.2.jar;
+
+-- Joins: Hive normally turns a join with a small table into a "map join". For that it first
+-- starts a separate local Java process (MapredLocalTask) to build a hash table of the small
+-- table. That child process does not get our env.sh fixes and fails with exit status 1.
+-- With this off, Hive does a normal reduce-side join: both tables are shuffled by the join
+-- key and matched in the reducer. Slower for tiny tables, but it works and is easy to explain.
+SET hive.auto.convert.join=false;
+0: jdbc:hive2://> -- Runs at the start of every Hive session (hive/run_hive.sh passes it with -i).
+
+0: jdbc:hive2://> -- Hive's map tasks need commons-collections 3 inside the YARN containers, and Hadoop 3.4
+
+0: jdbc:hive2://> -- does not ship it. ADD JAR sends the jar along with every job in this session.
+
+0: jdbc:hive2://> -- (HIVE_AUX_JARS_PATH and hive.aux.jars.path did not work in embedded beeline; we tried.)
+
+0: jdbc:hive2://> ADD JAR ${env:HIVE_HOME}/lib/commons-collections-3.2.2.jar;
+
+0: jdbc:hive2://> 
+
+0: jdbc:hive2://> -- Joins: Hive normally turns a join with a small table into a "map join". For that it first
+
+0: jdbc:hive2://> -- starts a separate local Java process (MapredLocalTask) to build a hash table of the small
+
+0: jdbc:hive2://> -- table. That child process does not get our env.sh fixes and fails with exit status 1.
+
+0: jdbc:hive2://> -- With this off, Hive does a normal reduce-side join: both tables are shuffled by the join
+
+0: jdbc:hive2://> -- key and matched in the reducer. Slower for tiny tables, but it works and is easy to explain.
+
+0: jdbc:hive2://> SET hive.auto.convert.join=false;
+
+0: jdbc:hive2://> 
+
+0: jdbc:hive2://> 
+
+26/11/23 11:35:35 [6cbd9c30-b94f-40e5-b072-e0b692a94fa2 main]: WARN calcite.RelOptHiveTable: No Stats for energy@energy_raw_ext_x5, Columns: country, metric, value, ts
+No Stats for energy@energy_raw_ext_x5, Columns: country, metric, value, ts
+26/11/23 11:35:36 [HiveServer2-Background-Pool: Thread-77]: WARN ql.Driver: Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. tez) or using Hive 1.X releases.
+Query ID = krishna_20261123113534_6b55926b-32ca-45a9-9294-89d78ff1ee2f
+Total jobs = 3
+Launching Job 1 out of 3
+Number of reduce tasks not specified. Estimated from input data size: 2
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:35:37 [HiveServer2-Background-Pool: Thread-77]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0219, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0219/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0219
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 2
+26/11/23 11:35:47 [HiveServer2-Background-Pool: Thread-77]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:35:47,181 Stage-1 map = 0%,  reduce = 0%
+2026-11-23 11:35:58,527 Stage-1 map = 100%,  reduce = 0%
+2026-11-23 11:36:09,885 Stage-1 map = 100%,  reduce = 50%
+2026-11-23 11:36:10,917 Stage-1 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0219
+Launching Job 2 out of 3
+Number of reduce tasks not specified. Estimated from input data size: 2
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:36:12 [HiveServer2-Background-Pool: Thread-77]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0220, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0220/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0220
+Hadoop job information for Stage-3: number of mappers: 1; number of reducers: 2
+26/11/23 11:36:29 [HiveServer2-Background-Pool: Thread-77]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:36:29,455 Stage-3 map = 0%,  reduce = 0%
+2026-11-23 11:36:39,806 Stage-3 map = 100%,  reduce = 0%
+2026-11-23 11:36:48,100 Stage-3 map = 100%,  reduce = 50%
+2026-11-23 11:36:49,138 Stage-3 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0220
+Launching Job 3 out of 3
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+26/11/23 11:36:50 [HiveServer2-Background-Pool: Thread-77]: WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+Starting Job = job_1795405562072_0221, Tracking URL = http://localhost:8088/proxy/application_1795405562072_0221/
+Kill Command = /Users/krishna/Desktop/BDA/tools/hadoop-3.4.2/bin/mapred job  -kill job_1795405562072_0221
+Hadoop job information for Stage-2: number of mappers: 2; number of reducers: 1
+26/11/23 11:37:02 [HiveServer2-Background-Pool: Thread-77]: WARN mapreduce.Counters: Group org.apache.hadoop.mapred.Task$Counter is deprecated. Use org.apache.hadoop.mapreduce.TaskCounter instead
+2026-11-23 11:37:02,998 Stage-2 map = 0%,  reduce = 0%
+2026-11-23 11:37:17,590 Stage-2 map = 100%,  reduce = 0%
+2026-11-23 11:37:23,775 Stage-2 map = 100%,  reduce = 100%
+Ended Job = job_1795405562072_0221
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 2   HDFS Read: 264516784 HDFS Write: 2611 HDFS EC Read: 0 SUCCESS
+Stage-Stage-3: Map: 1  Reduce: 2   HDFS Read: 264512899 HDFS Write: 2139 HDFS EC Read: 0 SUCCESS
+Stage-Stage-2: Map: 2  Reduce: 1   HDFS Read: 19528 HDFS Write: 2422 HDFS EC Read: 0 SUCCESS
+Total MapReduce CPU Time Spent: 0 msec
+26/11/23 11:37:24 [pool-15-thread-2]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 11:37:24 [pool-15-thread-2]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 11:37:25 [pool-15-thread-1]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 11:37:25 [pool-15-thread-1]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 11:37:25 [shutdown-hook-0]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+26/11/23 11:37:25 [shutdown-hook-0]: WARN util.ShutdownHookManager: Shutdown in progress, cannot cancel a deleteOnExit
+
+Wall clock seconds: 124.3
+Exit code: 0
