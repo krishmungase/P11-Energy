@@ -1,0 +1,2 @@
+Replication 2 set: /energy/long/sample/energy_sample.csv
+replication=2 name=energy_sample.csv

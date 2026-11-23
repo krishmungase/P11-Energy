@@ -1,0 +1,41 @@
+FSCK started by krishna (auth:SIMPLE) from /127.0.0.1 for path /energy at Mon Nov 23 09:52:17 IST 2026
+
+
+Status: HEALTHY
+ Number of data-nodes:	1
+ Number of racks:		1
+ Total dirs:			24
+ Total symlinks:		0
+
+Replicated Blocks:
+ Total size:	260957288 B
+ Total files:	25
+ Total blocks (validated):	18 (avg. block size 14497627 B)
+ Minimally replicated blocks:	18 (100.0 %)
+ Over-replicated blocks:	0 (0.0 %)
+ Under-replicated blocks:	0 (0.0 %)
+ Mis-replicated blocks:		0 (0.0 %)
+ Default replication factor:	1
+ Average block replication:	1.0
+ Missing blocks:		0
+ Corrupt blocks:		0
+ Missing replicas:		0 (0.0 %)
+ Blocks queued for replication:	0
+
+Erasure Coded Block Groups:
+ Total size:	0 B
+ Total files:	0
+ Total block groups (validated):	0
+ Minimally erasure-coded block groups:	0
+ Over-erasure-coded block groups:	0
+ Under-erasure-coded block groups:	0
+ Unsatisfactory placement block groups:	0
+ Average block group size:	0.0
+ Missing block groups:		0
+ Corrupt block groups:		0
+ Missing internal blocks:	0
+ Blocks queued for replication:	0
+FSCK ended at Mon Nov 23 09:52:17 IST 2026 in 4 milliseconds
+
+
+The filesystem under path '/energy' is HEALTHY

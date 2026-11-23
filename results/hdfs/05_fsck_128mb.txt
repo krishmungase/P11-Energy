@@ -1,0 +1,45 @@
+FSCK started by krishna (auth:SIMPLE) from /127.0.0.1 for path /energy/long/full at Mon Nov 23 09:52:14 IST 2026
+
+/energy/long/full <dir>
+/energy/long/full/energy_full.csv 52897951 bytes, replicated: replication=1, 1 block(s):  OK
+0. BP-1886545654-127.0.0.1-1795405553839:blk_1073742297_1473 len=52897951 Live_repl=1  [DatanodeInfoWithStorage[127.0.0.1:9866,DS-a56195cd-92b2-440c-8002-39fd4e25beb5,DISK]]
+
+
+Status: HEALTHY
+ Number of data-nodes:	1
+ Number of racks:		1
+ Total dirs:			1
+ Total symlinks:		0
+
+Replicated Blocks:
+ Total size:	52897951 B
+ Total files:	1
+ Total blocks (validated):	1 (avg. block size 52897951 B)
+ Minimally replicated blocks:	1 (100.0 %)
+ Over-replicated blocks:	0 (0.0 %)
+ Under-replicated blocks:	0 (0.0 %)
+ Mis-replicated blocks:		0 (0.0 %)
+ Default replication factor:	1
+ Average block replication:	1.0
+ Missing blocks:		0
+ Corrupt blocks:		0
+ Missing replicas:		0 (0.0 %)
+ Blocks queued for replication:	0
+
+Erasure Coded Block Groups:
+ Total size:	0 B
+ Total files:	0
+ Total block groups (validated):	0
+ Minimally erasure-coded block groups:	0
+ Over-erasure-coded block groups:	0
+ Under-erasure-coded block groups:	0
+ Unsatisfactory placement block groups:	0
+ Average block group size:	0.0
+ Missing block groups:		0
+ Corrupt block groups:		0
+ Missing internal blocks:	0
+ Blocks queued for replication:	0
+FSCK ended at Mon Nov 23 09:52:14 IST 2026 in 2 milliseconds
+
+
+The filesystem under path '/energy/long/full' is HEALTHY
