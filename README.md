@@ -110,7 +110,7 @@ P11-Energy/
   results/         every output: CSVs, counters, logs, timing tables
   screenshots/     one folder per step (added by each member)
   report/          final report (PDF)
-  slides/          presentation
+  slides/          P11_Energy_Presentation.pptx (17 slides, speaker notes) and build_slides.js
 ```
 
 `data/` (the downloaded and reshaped CSVs) is not in git; anyone can rebuild it with the Step 1 commands.
