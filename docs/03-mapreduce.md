@@ -166,19 +166,19 @@ From `results/mr/counters_full.md`:
 |---|---|---|---|---|
 | Launched map tasks | 1 | 1 | 1 | 1 |
 | Launched reduce tasks | 3 | 3 | 3 | 3 |
-| Map input records | 1,480,925 | 1,480,925 | 1,480,925 | 1,480,925 |
-| Map output records | 494,988 | 494,988 | 1,480,925 | 1,480,925 |
-| Combine input records | 494,988 | 0 | 1,480,925 | 0 |
+| Map input records | 1,480,915 | 1,480,915 | 1,480,915 | 1,480,915 |
+| Map output records | 494,980 | 494,980 | 1,480,915 | 1,480,915 |
+| Combine input records | 494,980 | 0 | 1,480,915 | 0 |
 | Combine output records | 59 | 0 | 688 | 0 |
-| Reduce input records | 59 | 494,988 | 688 | 1,480,925 |
+| Reduce input records | 59 | 494,980 | 688 | 1,480,915 |
 | Reduce shuffle bytes | 1,552 | 12,869,706 | 41,986 | 90,336,443 |
 | Reduce output records | 59 | 59 | 678 | 678 |
-| Wall clock (s) | 20 | 22 | 22 | 25 |
+| Wall clock (s) | 21 | 22 | 24 | 24 |
 
 What the numbers say:
 
-- The combiner cut Job A's shuffle from 12.9 MB to 1.5 KB, and the records reaching the reducers from 494,988 to 59. For Job B, from 90.3 MB to 42 KB.
-- The time saved is small (2 to 3 seconds), because everything runs on one laptop and the "network" is the local disk. Most of the 20 seconds is YARN starting containers. On a real cluster, sending 90 MB instead of 42 KB between machines would matter much more.
+- The combiner cut Job A's shuffle from 12.9 MB to 1.5 KB, and the records reaching the reducers from 494,980 to 59. For Job B, from 90.3 MB to 42 KB.
+- The time saved is small (0 to 1 seconds), because everything runs on one laptop and the "network" is the local disk. Most of the 20 seconds is YARN starting containers. On a real cluster, sending 90 MB instead of 42 KB between machines would matter much more.
 - 59 output rows = 10 countries × 6 years, minus Italy 2015. 678 = 10 countries × 69 months (Jan 2015 to Sep 2020), minus Italy's 12 months of 2015.
 - 1 map task, because `energy_full.csv` is 52.9 MB and fits in one 128 MB block. The scale test (Step 8) also runs on the 32 MB-block copy, which gives 2 map tasks.
 - Job B's combiner produced 688 records although there are only 678 keys. The mapper's output buffer filled up and was written to disk (spilled) more than once, and the combiner runs on each spill separately. A month whose records were split across two spills therefore comes out of the combiner twice. The reducer adds them, so the answer is still right. This is a real example of "the combiner may run more than once".
@@ -227,7 +227,7 @@ Why can't the combiner compute the average?
 An average of averages is wrong when groups have different sizes. avg(1, 2, 3) = 2, avg(5) = 5, and avg(2, 5) = 3.5, but the real average is 2.75. So we pass sums and counts and divide only once, in the reducer.
 
 How much did the combiner help?
-Job A: reducer input fell from 494,988 records to 59, and shuffle bytes from 12.9 MB to 1.5 KB. Job B: 1,480,925 to 688 records, 90.3 MB to 42 KB.
+Job A: reducer input fell from 494,980 records to 59, and shuffle bytes from 12.9 MB to 1.5 KB. Job B: 1,480,915 to 688 records, 90.3 MB to 42 KB.
 
 Why are there 688 combine output records but only 678 keys?
 The map output was spilled to disk more than once, and the combiner runs once per spill. A key split across two spills comes out twice. The reducer adds both, so the result is still correct.

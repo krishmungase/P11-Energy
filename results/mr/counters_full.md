@@ -4,16 +4,16 @@
 |---|---|---|---|---|
 | Launched map tasks | 1 | 1 | 1 | 1 |
 | Launched reduce tasks | 3 | 3 | 3 | 3 |
-| Map input records | 1480925 | 1480925 | 1480925 | 1480925 |
-| Map output records | 494988 | 494988 | 1480925 | 1480925 |
-| Combine input records | 494988 | 0 | 1480925 | 0 |
+| Map input records | 1480915 | 1480915 | 1480915 | 1480915 |
+| Map output records | 494980 | 494980 | 1480915 | 1480915 |
+| Combine input records | 494980 | 0 | 1480915 | 0 |
 | Combine output records | 59 | 0 | 688 | 0 |
-| Reduce input records | 59 | 494988 | 688 | 1480925 |
-| Reduce shuffle bytes | 1552 | 12869706 | 41986 | 90336443 |
+| Reduce input records | 59 | 494980 | 688 | 1480915 |
+| Reduce shuffle bytes | 1552 | 12869498 | 41986 | 90335833 |
 | Reduce output records | 59 | 59 | 678 | 678 |
 | BAD_LINES | - | - | - | - |
-| LOAD_RECORDS | 494988 | 494988 | 494988 | 494988 |
+| LOAD_RECORDS | 494980 | 494980 | 494980 | 494980 |
 | SOLAR_RECORDS | - | - | 494876 | 494876 |
-| WIND_RECORDS | - | - | 491061 | 491061 |
-| SKIPPED_OTHER_METRIC | 985937 | 985937 | - | - |
-| Wall clock seconds | 20 | 22 | 22 | 25 |
+| WIND_RECORDS | - | - | 491059 | 491059 |
+| SKIPPED_OTHER_METRIC | 985935 | 985935 | - | - |
+| Wall clock seconds | 21 | 22 | 24 | 24 |
