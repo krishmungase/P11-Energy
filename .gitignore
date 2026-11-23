@@ -1,0 +1,22 @@
+# Data is too big for GitHub. Download it with the steps in docs/01-data.md
+data/
+
+# Local runtime state (HDFS blocks, Hive metastore, logs, Python packages)
+.hdfs-data/
+.hive/
+.logs/
+.venv/
+derby.log
+pig_*.log
+
+# Generated from setup/hive-site.xml.template by setup/setup-hive.sh (has a local path in it)
+setup/hive-conf/
+
+# Build output
+mapreduce/target/
+
+# OS / editor junk
+.DS_Store
+__pycache__/
+.idea/
+.vscode/

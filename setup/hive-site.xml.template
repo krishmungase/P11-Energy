@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!-- TEMPLATE: setup/setup-hive.sh replaces @P11_ROOT@ with the project path and writes setup/hive-conf/hive-site.xml. Edit this file, not that one. -->
+<configuration>
+  <!-- Metastore = the small database where Hive keeps table definitions (not the data).
+       Embedded Derby is enough for one user on one machine. -->
+  <property>
+    <name>javax.jdo.option.ConnectionURL</name>
+    <value>jdbc:derby:;databaseName=@P11_ROOT@/.hive/metastore_db;create=true</value>
+  </property>
+  <property>
+    <name>javax.jdo.option.ConnectionDriverName</name>
+    <value>org.apache.derby.iapi.jdbc.AutoloadedDriver</value>
+  </property>
+  <!-- Managed tables are stored here in HDFS -->
+  <property>
+    <name>hive.metastore.warehouse.dir</name>
+    <value>/energy/warehouse</value>
+  </property>
+  <!-- Run queries as MapReduce jobs on our YARN (Tez is not installed) -->
+  <property>
+    <name>hive.execution.engine</name>
+    <value>mr</value>
+  </property>
+  <!-- Needed for INSERT ... PARTITION (year) where the year comes from the data -->
+  <property>
+    <name>hive.exec.dynamic.partition.mode</name>
+    <value>nonstrict</value>
+  </property>
+  <property>
+    <name>hive.server2.enable.doAs</name>
+    <value>false</value>
+  </property>
+  <property>
+    <name>hive.exec.scratchdir</name>
+    <value>/tmp/hive</value>
+  </property>
+  <property>
+    <name>hive.querylog.location</name>
+    <value>@P11_ROOT@/.logs/hive</value>
+  </property>
+  <property>
+    <name>hive.server2.logging.operation.log.location</name>
+    <value>@P11_ROOT@/.logs/hive/operation_logs</value>
+  </property>
+  <!-- Small data: let Hive run tiny jobs in-process instead of starting YARN containers -->
+  <property>
+    <name>hive.exec.mode.local.auto</name>
+    <value>false</value>
+  </property>
+  <property>
+    <name>hive.stats.autogather</name>
+    <value>false</value>
+  </property>
+</configuration>

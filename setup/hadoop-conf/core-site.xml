@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!-- P11: pseudo-distributed mode. Everything runs on this one laptop. -->
+<configuration>
+  <!-- Clients talk to the NameNode on port 9000 -->
+  <property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://localhost:9000</value>
+  </property>
+  <!-- Where HDFS keeps its files on the local disk. Set by env.sh. -->
+  <property>
+    <name>hadoop.tmp.dir</name>
+    <value>${env.P11_HDFS_DATA}</value>
+  </property>
+  <!-- Hive's HiveServer2 / beeline runs jobs as the current user -->
+  <property>
+    <name>hadoop.proxyuser.${user.name}.hosts</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.${user.name}.groups</name>
+    <value>*</value>
+  </property>
+</configuration>
