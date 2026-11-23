@@ -1,4 +1,5 @@
 109.8 M  109.8 M  /energy/long
-257.7 K  257.7 K  /energy/output
+1.7 M    1.7 M    /energy/output
 124.3 M  124.3 M  /energy/raw
+268      268      /energy/test
 14.5 M   14.5 M   /energy/warehouse

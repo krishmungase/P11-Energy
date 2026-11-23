@@ -78,6 +78,29 @@ def wind_series(df, c):
     return built, "onshore only (no offshore column)"
 
 
+def find_spikes(long):
+    """Return the rows that are single-hour data errors.
+
+    The Pig job's "peak load hour" showed France at 158,000 MW on 2020-07-07 17:00,
+    between 49,768 and 46,325 MW in the hours around it. France's real peak is about
+    90,000 MW, in winter. Denmark had similar one- or two-hour jumps.
+
+    A reading counts as a spike when BOTH are true:
+      - it is more than 25% above the 99.9th percentile of that country and metric
+        (so it is far outside the normal range), and
+      - it is more than 30% above the median of the 7 hours around it (3 before,
+        itself, 3 after), so it is a sudden jump that falls back again.
+    The median ignores up to 3 bad values in the window, so a 2-hour spike is caught too.
+    Real load never triples for one hour; real wind cannot exceed installed capacity.
+    """
+    s = long.sort_values(["country", "metric", "timestamp"])
+    g = s.groupby(["country", "metric"])["value"]
+    p999 = g.transform(lambda v: v.quantile(0.999))
+    median7 = g.transform(lambda v: v.rolling(7, center=True, min_periods=3).median())
+    mask = (s["value"] > 1.25 * p999) & (s["value"] > 1.3 * median7)
+    return s[mask].assign(median7=median7[mask])
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--input", default=ROOT / "data" / "time_series_60min_singleindex.csv")
@@ -121,6 +144,10 @@ def main():
     long = long.dropna(subset=["value"])
     print(f"Long rows before drop: {total_rows:,}  after drop: {len(long):,}")
 
+    spikes = find_spikes(long)
+    long = long.drop(spikes.index)
+    print(f"Spikes removed: {len(spikes)}")
+
     long["timestamp"] = long["timestamp"].dt.strftime("%Y-%m-%d %H:%M:%S")
     long = long.sort_values(["timestamp", "country", "metric"])
 
@@ -138,7 +165,8 @@ def main():
         "",
         f"Source file: `{Path(args.input).name}`, {df.shape[0]:,} hourly rows used (2015-01-01 to the end of the file).",
         f"Long rows possible: {total_rows:,}. Rows dropped (empty cell, or a country-year we excluded): "
-        f"{total_rows - len(long):,}. Rows kept: {len(long):,}.",
+        f"{total_rows - len(long) - len(spikes):,}. Spikes removed: {len(spikes)}. "
+        f"Rows kept: {len(long):,}.",
         "",
         f"`energy_full.csv`: {len(long):,} rows, {full_path.stat().st_size / 1e6:.1f} MB",
         f"`energy_sample.csv` ({SAMPLE_YEAR} only): {len(sample):,} rows, {sample_path.stat().st_size / 1e6:.1f} MB",
@@ -155,6 +183,12 @@ def main():
     for c in COUNTRIES:
         k = kept.loc[c]
         lines.append(f"| {c} | {int(k['load'])} | {int(k['solar'])} | {int(k['wind'])} |")
+    lines += ["", "## Spikes removed (single-hour data errors)", "",
+              "| timestamp (UTC) | country | metric | value | median of the 7 hours around it |",
+              "|---|---|---|---|---|"]
+    for _, r in spikes.sort_values(["country", "metric", "timestamp"]).iterrows():
+        lines.append(f"| {r.timestamp:%Y-%m-%d %H:%M} | {r.country} | {r.metric} | "
+                     f"{r.value:,.0f} | {r.median7:,.0f} |")
     lines += ["", "## Rows per year", "", "| year | rows |", "|---|---|"]
     lines += [f"| {y} | {n:,} |" for y, n in years.items()]
 

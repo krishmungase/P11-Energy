@@ -1,8 +1,8 @@
-FSCK started by krishna (auth:SIMPLE) from /127.0.0.1 for path /energy/long/sample at Mon Nov 23 09:52:20 IST 2026
+FSCK started by krishna (auth:SIMPLE) from /127.0.0.1 for path /energy/long/sample at Mon Nov 23 10:09:32 IST 2026
 
 /energy/long/sample <dir>
-/energy/long/sample/energy_sample.csv 9368536 bytes, replicated: replication=2, 1 block(s):  Under replicated BP-1886545654-127.0.0.1-1795405553839:blk_1073742296_1472. Target Replicas is 2 but found 1 live replica(s), 0 decommissioned replica(s), 0 decommissioning replica(s).
-0. BP-1886545654-127.0.0.1-1795405553839:blk_1073742296_1472 len=9368536 Live_repl=1  [DatanodeInfoWithStorage[127.0.0.1:9866,DS-a56195cd-92b2-440c-8002-39fd4e25beb5,DISK]]
+/energy/long/sample/energy_sample.csv 9368536 bytes, replicated: replication=2, 1 block(s):  Under replicated BP-1886545654-127.0.0.1-1795405553839:blk_1073742610_1786. Target Replicas is 2 but found 1 live replica(s), 0 decommissioned replica(s), 0 decommissioning replica(s).
+0. BP-1886545654-127.0.0.1-1795405553839:blk_1073742610_1786 len=9368536 Live_repl=1  [DatanodeInfoWithStorage[127.0.0.1:9866,DS-a56195cd-92b2-440c-8002-39fd4e25beb5,DISK]]
 
 
 Status: HEALTHY
@@ -39,7 +39,7 @@ Erasure Coded Block Groups:
  Corrupt block groups:		0
  Missing internal blocks:	0
  Blocks queued for replication:	0
-FSCK ended at Mon Nov 23 09:52:20 IST 2026 in 1 milliseconds
+FSCK ended at Mon Nov 23 10:09:32 IST 2026 in 1 milliseconds
 
 
 The filesystem under path '/energy/long/sample' is HEALTHY

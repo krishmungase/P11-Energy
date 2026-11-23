@@ -73,6 +73,34 @@ Format decisions:
 - All times stay in UTC. Hive converts to local time in Step 6, where it matters for daily load curves.
 - Empty cells are dropped, not written as 0. A missing reading is unknown, and writing 0 would pull averages down.
 
+## Removing spikes
+
+After the first Pig run (Step 5), the "highest load hour" for France was 158,000 MW on 2020-07-07 at 17:00 UTC. The hours around it were 49,768 and 46,325 MW, and France's real all-time peak is about 90,000 MW, in winter. Denmark had several similar jumps. These are errors in the source data. Left in, they would have taken all the top places in question 4 (biggest hourly load changes).
+
+`reshape.py` now removes a reading when both of these are true:
+
+- it is more than 25% above the 99.9th percentile of that country and metric, so it is far outside the normal range, and
+- it is more than 30% above the median of the 7 hours around it (3 before, itself, 3 after), so it is a sudden jump that falls back.
+
+We use the median of 7 hours, not just the hour before and after, because Denmark on 2017-05-08 had a spike lasting two hours. With only the neighbours, the second bad hour would hide the first.
+
+The rule removed 10 readings, listed in `results/prep_report.md`:
+
+| Time (UTC) | Country | Metric | Value (MW) | Median of the 7 hours around it |
+|---|---|---|---|---|
+| 2015-11-30 14:00 | DK | load | 8,607 | 4,997 |
+| 2017-05-08 06:00 | DK | load | 7,389 | 4,096 |
+| 2017-05-08 07:00 | DK | load | 8,088 | 4,096 |
+| 2018-01-17 08:00 | DK | load | 7,398 | 5,168 |
+| 2018-02-06 12:00 | DK | load | 7,731 | 5,373 |
+| 2018-03-22 08:00 | DK | load | 7,456 | 5,041 |
+| 2020-02-27 09:00 | DK | load | 9,618 | 5,130 |
+| 2017-05-08 06:00 | DK | wind | 7,237 | 3,506 |
+| 2017-05-08 07:00 | DK | wind | 7,821 | 3,506 |
+| 2020-07-07 17:00 | FR | load | 158,000 | 47,869 |
+
+None of them is in 2019, so the sample file did not change.
+
 ## Running it
 
 ```bash
@@ -87,24 +115,24 @@ It takes under a minute and writes:
 
 | File | Rows | Size | Used for |
 |---|---|---|---|
-| `data/energy_full.csv` | 1,480,925 | 52.9 MB | all real runs |
+| `data/energy_full.csv` | 1,480,915 | 52.9 MB | all real runs |
 | `data/energy_sample.csv` | 262,013 | 9.4 MB | 2019 only, for quick tests and the scale test |
 | `results/prep_report.md` | | | rows kept and dropped per country, for the report |
 
 The `data/` folder is not on GitHub (the raw file is 130 MB). Anyone can rebuild it with the two commands above.
 
-Of 1,512,000 possible readings (50,400 hours × 10 countries × 3 metrics), 31,075 were dropped. 26,280 of those are Italy's excluded 2015 (8,760 hours × 3 metrics). Of the other 4,795, 3,934 are Belgian wind gaps, and the rest are small gaps of under 110 hours per country and metric.
+Of 1,512,000 possible readings (50,400 hours × 10 countries × 3 metrics), 31,075 were dropped as empty and 10 as spikes. Of the 31,075 empty ones, 26,280 are Italy's excluded 2015 (8,760 hours × 3 metrics). Of the other 4,795, 3,934 are Belgian wind gaps, and the rest are small gaps of under 110 hours per country and metric.
 
 Rows per year: 2015 has fewer rows because Italy is excluded, and 2020 stops at the end of September.
 
 | Year | Rows |
 |---|---|
-| 2015 | 235,841 |
+| 2015 | 235,840 |
 | 2016 | 262,435 |
-| 2017 | 262,165 |
-| 2018 | 262,018 |
+| 2017 | 262,161 |
+| 2018 | 262,015 |
 | 2019 | 262,013 |
-| 2020 | 196,453 |
+| 2020 | 196,451 |
 
 ## Screenshots to take
 
@@ -121,6 +149,9 @@ In long format every line has the same four fields, so a mapper can parse any li
 
 Why did you change the country list from the plan?
 We checked coverage first. Poland's solar was 92% empty and the Netherlands' 2019 solar averaged 1 MW, which is not believable. A renewable share built on that data would be wrong, so we swapped in Czech Republic and Greece, which have full data.
+
+How did you find the bad values, and how did you remove them?
+The Pig job's peak-hour output showed France at 158,000 MW, almost twice its real peak, for one hour only. We then wrote a rule: a reading is removed if it is far above the normal range (25% over the 99.9th percentile) and far above the hours around it (30% over the 7-hour median). It removed 10 readings, all of them one- or two-hour jumps.
 
 Why drop empty cells instead of writing 0?
 Zero is a real value (solar at night is 0). An empty cell means we do not know. Writing 0 would make averages and shares too low.

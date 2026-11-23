@@ -81,8 +81,8 @@ Results (from `results/hdfs/04_blocksize.txt` and `05_fsck_*.txt`):
 
 | File | Size (bytes) | Block size | Blocks | Block lengths |
 |---|---|---|---|---|
-| `/energy/long/full/energy_full.csv` | 52,897,951 | 128 MB | 1 | 52,897,951 |
-| `/energy/long/full_32mb/energy_full.csv` | 52,897,951 | 32 MB | 2 | 33,554,432 + 19,343,519 |
+| `/energy/long/full/energy_full.csv` | 52,897,589 | 128 MB | 1 | 52,897,589 |
+| `/energy/long/full_32mb/energy_full.csv` | 52,897,589 | 32 MB | 2 | 33,554,432 + 19,343,157 |
 | `/energy/raw/time_series_60min_singleindex.csv` | 130,339,665 | 128 MB | 1 | 130,339,665 |
 
 The same 52.9 MB file is 1 block with the default size and 2 blocks with 32 MB blocks. The second block holds only the remaining 19.3 MB; HDFS does not pad it to 32 MB, so a small last block wastes no disk space.
