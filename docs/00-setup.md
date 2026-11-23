@@ -1,6 +1,6 @@
 # Step 0: setup
 
-Owner: Krish Mungase (krishmungase)
+Owner: Krishna Mungase (krishmungase)
 
 This page explains what we installed, how the pieces fit together, and how to start and stop everything. Read it before any other step, because every later command assumes Hadoop is running and `env.sh` has been sourced.
 

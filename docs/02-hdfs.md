@@ -1,6 +1,6 @@
 # Step 2: HDFS
 
-Owner: Krish Mungase (krishmungase)
+Owner: Krishna Mungase (krishmungase)
 
 This step puts our data into HDFS and shows the HDFS features the rules ask for: at least 3 directories, `fsck` output, one replication change, and one file with a non-default block size.
 

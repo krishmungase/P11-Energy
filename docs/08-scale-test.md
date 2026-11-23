@@ -1,6 +1,6 @@
 # Step 8: scale test
 
-Owner: Krish Mungase (krishmungase)
+Owner: Krishna Mungase (krishmungase)
 
 The rules ask us to run the same job on a small sample and on the full data, and record the time and the counters. Script: `run_all.py`. Results: `results/scale/scale_results.md` (table) and `results/scale/logs/` (every run's full log).
 

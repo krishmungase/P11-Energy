@@ -18,10 +18,10 @@ Renewable share = (solar + wind) / load. Answers, with numbers and charts, are i
 
 | Member | GitHub | Part | Folders | Docs |
 |---|---|---|---|---|
-| Krish Mungase | [krishmungase](https://github.com/krishmungase) | Setup, data preparation, HDFS, scale test | `setup/`, `env.sh`, `prep/`, `hdfs/`, `run_all.py` | [00](docs/00-setup.md), [01](docs/01-data.md), [02](docs/02-hdfs.md), [08](docs/08-scale-test.md) |
+| Krishna Mungase | [krishmungase](https://github.com/krishmungase) | Setup, data preparation, HDFS, scale test | `setup/`, `env.sh`, `prep/`, `hdfs/`, `run_all.py` | [00](docs/00-setup.md), [01](docs/01-data.md), [02](docs/02-hdfs.md), [08](docs/08-scale-test.md) |
 | Sakshi Deshmukh | [deshmukh-sakshi](https://github.com/deshmukh-sakshi) | MapReduce in Java | `mapreduce/` | [03](docs/03-mapreduce.md) |
 | Vaishnavi Bhosale | [Vaishnavi063](https://github.com/Vaishnavi063) | Pig and Hive | `pig/`, `hive/` | [05](docs/05-pig.md), [06](docs/06-hive.md) |
-| Sneh | [Sneh913](https://github.com/Sneh913) | Charts, findings, report, slides | `charts/`, `report/`, `slides/` | [07](docs/07-charts.md), [09](docs/09-findings.md) |
+| Snehal Mane | [Sneh913](https://github.com/Sneh913) | Charts, findings, report, slides | `charts/`, `report/`, `slides/` | [07](docs/07-charts.md), [09](docs/09-findings.md) |
 
 ## Documentation
 

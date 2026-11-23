@@ -1,6 +1,6 @@
 # Step 1: the dataset and how we reshaped it
 
-Owner: Krish Mungase (krishmungase)
+Owner: Krishna Mungase (krishmungase)
 
 ## The dataset
 

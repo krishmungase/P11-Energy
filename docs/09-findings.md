@@ -1,6 +1,6 @@
 # Findings: answers to the five questions
 
-Owner: Sneh (Sneh913)
+Owner: Snehal Mane (Sneh913)
 
 Data: 10 countries, January 2015 to September 2020, hourly (Italy from 2016). Every number below comes from our Hive and Pig output in `results/`. Hours are local clock time unless marked UTC. 2020 covers only January to September and includes the spring COVID lockdowns, so it is not a normal full year.
 

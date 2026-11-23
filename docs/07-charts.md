@@ -1,6 +1,6 @@
 # Step 7: charts
 
-Owner: Sneh (Sneh913)
+Owner: Snehal Mane (Sneh913)
 
 All charts are drawn by one script, `charts/make_charts.py`, from the CSV files that Hive and Pig wrote. No chart reads the raw data, so every number on a chart comes out of a Hadoop job.
 
