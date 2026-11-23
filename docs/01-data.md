@@ -73,33 +73,50 @@ Format decisions:
 - All times stay in UTC. Hive converts to local time in Step 6, where it matters for daily load curves.
 - Empty cells are dropped, not written as 0. A missing reading is unknown, and writing 0 would pull averages down.
 
-## Removing spikes
+## Removing bad values
 
-After the first Pig run (Step 5), the "highest load hour" for France was 158,000 MW on 2020-07-07 at 17:00 UTC. The hours around it were 49,768 and 46,325 MW, and France's real all-time peak is about 90,000 MW, in winter. Denmark had several similar jumps. These are errors in the source data. Left in, they would have taken all the top places in question 4 (biggest hourly load changes).
+Two later steps showed that the source data has some readings that cannot be real. We found them because the results looked wrong, then traced them back here.
 
-`reshape.py` now removes a reading when both of these are true:
+### Spikes (too high)
+
+After the first Pig run (Step 5), the "highest load hour" for France was 158,000 MW on 2020-07-07 at 17:00 UTC. The hours around it were 49,768 and 46,325 MW, while France's highest real hour in 2015-2020 is 94,492 MW, on a cold winter morning. Denmark had several similar jumps.
+
+A reading is removed as a spike when both are true:
 
 - it is more than 25% above the 99.9th percentile of that country and metric, so it is far outside the normal range, and
 - it is more than 30% above the median of the 7 hours around it (3 before, itself, 3 after), so it is a sudden jump that falls back.
 
-We use the median of 7 hours, not just the hour before and after, because Denmark on 2017-05-08 had a spike lasting two hours. With only the neighbours, the second bad hour would hide the first.
+We use the median of 7 hours, not just the hour before and after, because Denmark on 2017-05-08 had a spike lasting two hours. With only the neighbours, the second bad hour would hide the first. This rule is applied to all three metrics.
 
-The rule removed 10 readings, listed in `results/prep_report.md`:
+### Dips (too low)
 
-| Time (UTC) | Country | Metric | Value (MW) | Median of the 7 hours around it |
-|---|---|---|---|---|
-| 2015-11-30 14:00 | DK | load | 8,607 | 4,997 |
-| 2017-05-08 06:00 | DK | load | 7,389 | 4,096 |
-| 2017-05-08 07:00 | DK | load | 8,088 | 4,096 |
-| 2018-01-17 08:00 | DK | load | 7,398 | 5,168 |
-| 2018-02-06 12:00 | DK | load | 7,731 | 5,373 |
-| 2018-03-22 08:00 | DK | load | 7,456 | 5,041 |
-| 2020-02-27 09:00 | DK | load | 9,618 | 5,130 |
-| 2017-05-08 06:00 | DK | wind | 7,237 | 3,506 |
-| 2017-05-08 07:00 | DK | wind | 7,821 | 3,506 |
-| 2020-07-07 17:00 | FR | load | 158,000 | 47,869 |
+After the first Hive run of question 4 (biggest hourly load changes), the top rises and drops were Spanish hours where load fell from about 32,000 to 21,000 MW for one hour and came straight back. Austria showed whole days at about 2,000 MW, against a normal 7,000.
 
-None of them is in 2019, so the sample file did not change.
+This check is applied to load only. Solar really does fall to 0 when a cloud passes, and wind can drop fast, but a country's demand does not lose a third in one hour. Three rules, for gaps of different length:
+
+| Rule | Catches |
+|---|---|
+| below 70% of the median of the 7 hours around it | 1 to 3 bad hours |
+| below 50% of the median of the 25 hours around it | blocks of up to about 12 hours |
+| the day's average below 50% of the country's normal day (median of all its daily averages); the whole day is removed | whole bad days |
+
+The 50% limits are low on purpose. We first tried 60% for the day rule, and it flagged 6 Italian days: Easter Sundays and Mondays, and Sundays in the April 2020 COVID lockdown, at 56 to 65% of a normal day. Those days are real, so the limit went down to 50%, where only the two broken Austrian days remain.
+
+### What was removed
+
+70 readings in total, all listed in `results/prep_report.md`:
+
+| Country | What | Readings |
+|---|---|---|
+| FR | load spike: 158,000 MW on 2020-07-07 17:00 | 1 |
+| DK | load spikes on 7 different hours, 7,389 to 9,618 MW against a normal 4,100 to 5,400 | 7 |
+| DK | wind spike on 2017-05-08 06:00-07:00, same hours as a load spike | 2 |
+| DK | load dip on 2019-05-01 15:00-16:00 (about 1,700 MW against 3,300) | 2 |
+| ES | one-hour load dips on 2015-03-26, 2015-08-26 and 2018-06-05 | 3 |
+| AT | whole days 2015-11-29 and 2015-12-25 (average 1,913 and 2,366 MW) | 48 |
+| AT | night block 2015-12-28 23:00 to 2015-12-29 04:00, and 2015-01-21 02:00 | 7 |
+
+The Danish dip on 2019-05-01 is in the sample year, so the sample file lost 2 rows.
 
 ## Running it
 
@@ -115,23 +132,23 @@ It takes under a minute and writes:
 
 | File | Rows | Size | Used for |
 |---|---|---|---|
-| `data/energy_full.csv` | 1,480,915 | 52.9 MB | all real runs |
-| `data/energy_sample.csv` | 262,013 | 9.4 MB | 2019 only, for quick tests and the scale test |
+| `data/energy_full.csv` | 1,480,855 | 52.9 MB | all real runs |
+| `data/energy_sample.csv` | 262,011 | 9.4 MB | 2019 only, for quick tests and the scale test |
 | `results/prep_report.md` | | | rows kept and dropped per country, for the report |
 
 The `data/` folder is not on GitHub (the raw file is 130 MB). Anyone can rebuild it with the two commands above.
 
-Of 1,512,000 possible readings (50,400 hours × 10 countries × 3 metrics), 31,075 were dropped as empty and 10 as spikes. Of the 31,075 empty ones, 26,280 are Italy's excluded 2015 (8,760 hours × 3 metrics). Of the other 4,795, 3,934 are Belgian wind gaps, and the rest are small gaps of under 110 hours per country and metric.
+Of 1,512,000 possible readings (50,400 hours × 10 countries × 3 metrics), 31,075 were dropped as empty and 70 as bad values. Of the 31,075 empty ones, 26,280 are Italy's excluded 2015 (8,760 hours × 3 metrics). Of the other 4,795, 3,934 are Belgian wind gaps, and the rest are small gaps of under 110 hours per country and metric.
 
 Rows per year: 2015 has fewer rows because Italy is excluded, and 2020 stops at the end of September.
 
 | Year | Rows |
 |---|---|
-| 2015 | 235,840 |
+| 2015 | 235,783 |
 | 2016 | 262,435 |
 | 2017 | 262,161 |
-| 2018 | 262,015 |
-| 2019 | 262,013 |
+| 2018 | 262,014 |
+| 2019 | 262,011 |
 | 2020 | 196,451 |
 
 ## Screenshots to take
@@ -151,7 +168,10 @@ Why did you change the country list from the plan?
 We checked coverage first. Poland's solar was 92% empty and the Netherlands' 2019 solar averaged 1 MW, which is not believable. A renewable share built on that data would be wrong, so we swapped in Czech Republic and Greece, which have full data.
 
 How did you find the bad values, and how did you remove them?
-The Pig job's peak-hour output showed France at 158,000 MW, almost twice its real peak, for one hour only. We then wrote a rule: a reading is removed if it is far above the normal range (25% over the 99.9th percentile) and far above the hours around it (30% over the 7-hour median). It removed 10 readings, all of them one- or two-hour jumps.
+The results told us. Pig's peak-hour output showed France at 158,000 MW for one hour, almost twice its real peak, and Hive's biggest-hourly-change query was topped by Spanish hours where load fell by a third and came back. We wrote rules for both directions: a reading far above the normal range and the hours around it is a spike; a load reading far below the hours around it is a dip; a day whose average load is under half of a normal day is a bad day. 70 readings were removed out of 1.48 million.
+
+How do you know the rules do not remove real data?
+We printed everything each rule would remove before using it. At first the day rule used 60%, and it caught Italian Easter days and lockdown Sundays, which are real. We lowered it to 50%.
 
 Why drop empty cells instead of writing 0?
 Zero is a real value (solar at night is 0). An empty cell means we do not know. Writing 0 would make averages and shares too low.

@@ -98,7 +98,43 @@ def find_spikes(long):
     p999 = g.transform(lambda v: v.quantile(0.999))
     median7 = g.transform(lambda v: v.rolling(7, center=True, min_periods=3).median())
     mask = (s["value"] > 1.25 * p999) & (s["value"] > 1.3 * median7)
-    return s[mask].assign(median7=median7[mask])
+    return s[mask].assign(median7=median7[mask], reason="spike: far above normal range and the 7 hours around it")
+
+
+def find_load_dips(long):
+    """Return load readings that drop far too low (data errors the other way).
+
+    The first Hive run of question 4 showed Spain's load falling from 32,876 to 21,218 MW
+    for one hour and jumping back, and Austria at about 1,000 MW for a whole day
+    (normal is about 7,000). Real load does not lose a third of its value for one hour.
+
+    Only load is checked: solar really does drop to 0 when a cloud passes or at sunset,
+    and wind really can fall fast. Three rules, each for a different length of gap:
+      short dip:  below 70% of the median of the 7 hours around it   (1-3 bad hours)
+      long dip:   below 50% of the median of the 25 hours around it  (up to ~12 bad hours)
+      bad day:    the day's average is below 50% of the country's normal day
+                  (the median of all daily averages); all hours of that day are dropped
+    The 50% limits are low on purpose. Italy's quietest real days (Easter, and the
+    April 2020 lockdown) sit at 56-65% of a normal day and must stay in the data.
+    """
+    s = long[long["metric"] == "load"].sort_values(["country", "timestamp"]).copy()
+    g = s.groupby("country")["value"]
+    median7 = g.transform(lambda v: v.rolling(7, center=True, min_periods=3).median())
+    median25 = g.transform(lambda v: v.rolling(25, center=True, min_periods=7).median())
+    day = s["timestamp"].dt.strftime("%Y-%m-%d")
+    day_mean = s.groupby([s["country"], day])["value"].transform("mean")
+    normal_day = s.groupby([s["country"], day])["value"].mean().groupby(level=0).median()
+    country_normal = s["country"].map(normal_day)
+
+    short = s["value"] < 0.7 * median7
+    long_ = s["value"] < 0.5 * median25
+    bad_day = day_mean < 0.5 * country_normal
+    mask = short | long_ | bad_day
+    reason = pd.Series("", index=s.index)
+    reason[short] = "dip: below 70% of the 7 hours around it"
+    reason[long_ & ~short] = "dip: below 50% of the 25 hours around it"
+    reason[bad_day] = "bad day: daily average below 50% of a normal day"
+    return s[mask].assign(median7=median7[mask], reason=reason[mask])
 
 
 def main():
@@ -144,9 +180,13 @@ def main():
     long = long.dropna(subset=["value"])
     print(f"Long rows before drop: {total_rows:,}  after drop: {len(long):,}")
 
+    # Bad values: upward spikes in any metric first, then load dips on what is left
     spikes = find_spikes(long)
     long = long.drop(spikes.index)
-    print(f"Spikes removed: {len(spikes)}")
+    dips = find_load_dips(long)
+    long = long.drop(dips.index)
+    bad = pd.concat([spikes, dips])
+    print(f"Bad values removed: {len(spikes)} spikes, {len(dips)} load dips")
 
     long["timestamp"] = long["timestamp"].dt.strftime("%Y-%m-%d %H:%M:%S")
     long = long.sort_values(["timestamp", "country", "metric"])
@@ -165,7 +205,8 @@ def main():
         "",
         f"Source file: `{Path(args.input).name}`, {df.shape[0]:,} hourly rows used (2015-01-01 to the end of the file).",
         f"Long rows possible: {total_rows:,}. Rows dropped (empty cell, or a country-year we excluded): "
-        f"{total_rows - len(long) - len(spikes):,}. Spikes removed: {len(spikes)}. "
+        f"{total_rows - len(long) - len(bad):,}. Bad values removed: {len(bad)} "
+        f"({len(spikes)} spikes, {len(dips)} load dips). "
         f"Rows kept: {len(long):,}.",
         "",
         f"`energy_full.csv`: {len(long):,} rows, {full_path.stat().st_size / 1e6:.1f} MB",
@@ -183,12 +224,18 @@ def main():
     for c in COUNTRIES:
         k = kept.loc[c]
         lines.append(f"| {c} | {int(k['load'])} | {int(k['solar'])} | {int(k['wind'])} |")
-    lines += ["", "## Spikes removed (single-hour data errors)", "",
-              "| timestamp (UTC) | country | metric | value | median of the 7 hours around it |",
-              "|---|---|---|---|---|"]
-    for _, r in spikes.sort_values(["country", "metric", "timestamp"]).iterrows():
+    lines += ["", "## Bad values removed", "",
+              "Whole bad days (every load hour of the day removed):", ""]
+    bd = bad[bad["reason"].str.startswith("bad day")]
+    for (c, d), grp in bd.groupby([bd["country"], bd["timestamp"].dt.strftime("%Y-%m-%d")]):
+        lines.append(f"- {c} {d}: {len(grp)} hours, average {grp['value'].mean():,.0f} MW")
+    lines += ["", "Single readings:", "",
+              "| timestamp (UTC) | country | metric | value | median of the 7 hours around it | reason |",
+              "|---|---|---|---|---|---|"]
+    for _, r in bad[~bad["reason"].str.startswith("bad day")].sort_values(
+            ["country", "metric", "timestamp"]).iterrows():
         lines.append(f"| {r.timestamp:%Y-%m-%d %H:%M} | {r.country} | {r.metric} | "
-                     f"{r.value:,.0f} | {r.median7:,.0f} |")
+                     f"{r.value:,.0f} | {r.median7:,.0f} | {r.reason} |")
     lines += ["", "## Rows per year", "", "| year | rows |", "|---|---|"]
     lines += [f"| {y} | {n:,} |" for y, n in years.items()]
 

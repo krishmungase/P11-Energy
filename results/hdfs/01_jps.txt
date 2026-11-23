@@ -1,6 +1,7 @@
 44944 NameNode
+32402 Jps
+32068 RunJar
 45014 DataNode
 45082 ResourceManager
 45146 NodeManager
-93103 Jps
 45230 JobHistoryServer
